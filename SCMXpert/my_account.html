@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family:boxicons!important;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        body {
+            font-family: boxicons !important;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            margin: 0;
+            /* Set background image */
+            background-image: url('/static/sea-freight.jpg');
+            background-size: cover; /* Adjust background size as needed */
+            background-position: center; /* Adjust background position as needed */
+        }
+        .heading {
+            text-align: center;
+            margin-top: 100px;
+            font-size: 38px;
+        }
+
+        .container {
+            width: 400px;
+            padding: 20px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 158px; /* Adjust margin-top as needed */
+        }
+
+        .user-info-container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .user-info-container div {
+            margin-bottom: 10px;
+        }
+
+        .user-info-container strong {
+            font-weight: bold;
+        }
+
+        /* Drawer styles */
+        .drawer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 258px;
+            height: 100%;
+            background-color: #181717;
+            padding-top: 60px; /* Adjust padding for logo */
+            box-sizing: border-box;
+            z-index: 999;
+            overflow-y: auto;
+            transition: 0.5s;
+        }
+
+        .nav_list {
+            padding-top: -11px; /* Adjust padding for logo */
+            text-align: left; /* Align text to the left */
+        }
+
+        .nav_link {
+            display: block;
+            padding: 15px 20px;
+            text-decoration: none;
+            font-size: 22px;
+            color: #818181;
+            transition: 0.3s;
+            text-align: left; /* Align text to the left */
+        }
+
+        .nav_icon {
+            margin-right: 10px; /* Add margin to the right of the icons */
+        }
+
+        .nav_link:hover {
+            background-color: #555;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <form action="/my_account" method="POST">
+    <!-- Drawer -->
+    <div class="drawer" id="myDrawer">
+        <div class="company-logo" style="margin-top:0px">
+            <img src="/static/exf_logo.png" alt="Company Logo" style="width: 230px;">
+        </div>
+        <div class="nav_list">
+            <a href="/Dashboard" class="nav_link">
+                <i class='bx bx-grid-alt nav_icon'></i>
+                <span class="nav_name">Dashboard</span>
+            </a>
+            <a href="/my_account" class="nav_link">
+                <i class='bx bx-user nav_icon'></i>
+                <span class="nav_name">My Account</span>
+            </a>
+            <a href="/my_shipment" class="nav_link">
+                <i class='bx bxs-book-content'></i>
+                <span class="nav_name">My Shipment</span>
+            </a>
+            <a href="/New_shipment" class="nav_link">
+                <i class='bx bxs-truck'></i>
+                <span class="nav_name">New Shipment</span>
+            </a>
+            <a href="/device_data" class="nav_link deviceData">
+                <i class='bx bx-hdd'></i>
+                <span class="nav_name">Device Data</span>
+            </a>
+        </div>
+        <a href="/sign out" class="nav_link logout">
+            <i class='bx bx-log-out nav_icon'></i>
+            <span class="nav_name">Sign Out</span>
+        </a>
+    </div>
+
+    <h1 class="heading">My Account</h1>
+    <div class="container">
+        <div class="user-info-container">
+            <div>
+                <strong>Username:</strong> <span id="username"></span>
+            </div>
+            <div>
+                <strong>Email:</strong> <span id="email"></span>
+            </div>
+            <div>
+                <strong>Role:</strong> <span id="role"></span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Retrieve user information from localStorage or any other source
+        var userInfo = {
+            username: "demo",
+            email: "demo@example.com",
+            role: "Admin"
+        };
+
+        // Update the DOM with user information
+        document.getElementById("username").innerText = userInfo.username;
+        document.getElementById("email").innerText = userInfo.email;
+        document.getElementById("role").innerText = userInfo.role;
+
+//         // Function to check if the user is logged in
+// function checkAuthentication() {
+//         const accessToken = localStorage.getItem("access_token");
+
+//         if (!accessToken) {
+//             window.location.href = "/sign";
+//         }
+//     }
+
+//     // Call the function to check authentication
+//     checkAuthentication();
+//         var slides = document.querySelectorAll(".slideshow img");
+//         var currentSlide = 0;
+//         var welcomeText = document.getElementById('welcomeText');
+
+//         function showSlide(index) {
+//             // Hide all slides
+//             slides.forEach(function (slide) {
+//                 slide.classList.remove("active");
+//             });
+
+//             // Show the selected slide
+//             slides[index].classList.add("active");
+
+//             // Update welcome text
+//             var texts = ["Hi Buddy!", "Welcome To SCMXPerLite", "Hi buddy!Welcome to SCMXPerLite"];
+//             welcomeText.textContent = texts[index];
+//         }
+
+//         function nextSlide() {
+//             currentSlide = (currentSlide + 1) % slides.length;
+//             showSlide(currentSlide);
+//         }
+
+//         // Show the first slide initially
+//         showSlide(currentSlide);
+
+//         // Start the slideshow
+//         var slideshowInterval = setInterval(nextSlide, 3000);
+
+//         // Add animation class to welcome text
+//         setTimeout(function () {
+//             welcomeText.classList.add('show-animation');
+//         }, 1000); // Adjust the delay as needed
+//         localStorage.setItem("access_token", "{{ access_token }}");
+
+//         // Storing the access token in localStorage
+// localStorage.setItem('access_token', 'your_access_token_here');
+
+// // Retrieving the access token from localStorage
+// const accessToken = localStorage.getItem('access_token');
+
+// // Removing the access token from localStorage
+// localStorage.removeItem('access_token');
+// // Specify the URL from which you want to fetch data
+// const url = 'https://api.example.com/data';
+ 
+// // Make a GET request to the specified URL
+// fetch(url)
+//   .then(response => {
+//     // Check if the request was successful (status code 200)
+//     if (response.ok) {
+//       // Parse the response as JSON
+//       return response.json();
+//     } else {
+//       // If the request was not successful, throw an error
+//       throw new Error('Network response was not ok.');
+//     }
+//   })
+//   .then(data => {
+//     // Handle the JSON data returned from the server
+//     console.log('Data:', data);
+//     // Do something with the data...
+//   })
+//   .catch(error => {
+//     // Handle any errors that occurred during the fetch operation
+//     console.error('Fetch error:', error);
+//   });
+    </script>
+</body>
+</html>

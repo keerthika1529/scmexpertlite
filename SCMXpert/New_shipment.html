@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <title>Dashboard</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <style>
+        body {
+            font-family: boxicons!important;;
+            background-image: url('/static/sea-freight.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 100px;
+            overflow: hidden;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #31a3e6;
+            margin-right: 300px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        .left-col, .right-col {
+            float: left;
+            width: 50%;
+            padding: 25px;
+            box-sizing: border-box;
+        }
+
+        label {
+            font-weight: bold;
+        }
+        
+        input[type="text"],
+        input[type="date"],
+        textarea,
+        select {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+        }
+        
+        input[type="submit"],
+        input[type="button"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 45%;
+         margin-top: 20px;
+        }
+        
+        input[type="submit"]:hover,
+        input[type="button"]:hover {
+            background-color: #0056b3;
+        }
+
+        input[type="button"].clear {
+            background-color: #ff0000;
+        }
+        
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 52px;
+        }
+        .btn-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align items to the start of the container */
+    margin-top: 20px;
+}
+
+.btn-container input[type="button"].clear {
+    /* Remove margin-left and add margin-top to align with other buttons */
+    margin: 15px 0 0;
+}
+
+
+
+      /* Drawer styles */
+.drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 258px;
+    height: 100%;
+    background-color: #181717;
+    padding-top: 60px; /* Adjust padding for logo */
+    box-sizing: border-box;
+    z-index: 999;
+    overflow-y: auto;
+    transition: 0.5s;
+}
+
+.nav_list {
+    padding-top: -11px; /* Adjust padding for logo */
+    text-align: left; /* Align text to the left */
+}
+
+.nav_link {
+    display: block;
+    padding: 15px 20px;
+    text-decoration: none;
+    font-size: 22px;
+    color: #818181;
+    transition: 0.3s;
+    text-align: left; /* Align text to the left */
+}
+
+.nav_icon {
+    margin-right: 10px; /* Add margin to the right of the icons */
+}
+
+.nav_link:hover {
+    background-color: #555;
+    color: #fff;
+}
+.left-col,
+.right-col {
+    float: left;
+    width: 50%; /* Set both columns to occupy 50% of the container */
+    padding: 25px;
+    box-sizing: border-box;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #31a3e6;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 20px;
+    display: flex; /* Use flexbox for equal height columns */
+    margin-right: 310px;
+}
+
+/* Optional: Adjust padding or margins for spacing */
+.container .left-col,
+.container .right-col {
+    padding: 25px 20px; /* Adjust padding for equal spacing */
+}
+
+/* Optional: Adjust input width for better alignment */
+.container input,
+.container select,
+.container textarea {
+    width: 100%; /* Make inputs fill the entire column */
+}
+
+/* Set a fixed height for the textareas */
+textarea {
+    height: 50px; /* Adjust the height as needed */
+    overflow: hidden;
+    resize: none; /* Prevent resizing */
+}
+
+    </style>
+</head>
+<body>
+    <h1 style="text-align:center;font-size:42px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create a New Shipment</h1> 
+    <div class="container">
+        <form action="/New_shipment" method="POST">
+            <div class="left-col">
+                <label for="shipment_number">Shipment Number:</label>
+                <input type="text" id="shipment_number" name="shipment_number" placeholder="Shipment Number" required>
+                <label for="route_details">Route Details:</label>
+                <select id="route_details" name="route_details" required>
+                    <option value="">Select Route</option>
+                    <option value="route1">Route 1</option>
+                    <option value="route2">Route 2</option>
+                    <option value="route3">Route 3</option>
+                    <option value="route4">Route 4</option>
+                    <option value="route5">Route 5</option>
+                </select>
+                <label for="device">Device:</label>
+                <select id="device" name="device" required>
+                    <option value="">Select Device</option>
+                    <option value="device1">Device 1</option>
+                    <option value="device2">Device 2</option>
+                    <option value="device3">Device 3</option>
+                    <option value="device4">Device 4</option>
+                    <option value="device5">Device 5</option>
+                </select>
+                <label for="po_number">Po Number:</label>
+                <textarea id="po_number" name="po_number" placeholder="Po Number" required></textarea>
+                
+                <label for="ndc_number">NDC Number:</label>
+                <input type="text" id="ndc_number" name="ndc_number" placeholder="NDC Number" required>
+                
+                <label for="serial_number">Serial Number of Goods:</label>
+                <input type="text" id="serial_number" name="serial_number" placeholder="Serial Number of Goods" required>
+                <br>
+                <br>
+                <input type="submit" value="Create Shipment">
+            </div>
+            <div class="right-col">
+                <label for="container_number">Container Number:</label>
+                <input type="text" id="container_number" name="container_number" placeholder="Container Number" required>
+                
+                <label for="goods_type">Goods Type:</label>
+                <select id="goods_type" name="goods_type" required>
+                    <option value="">Select Goods Type</option>
+                    <option value="type1">Type 1</option>
+                    <option value="type2">Type 2</option>
+                    <option value="type3">Type 3</option>
+                    <option value="type4">Type 4</option>
+                    <option value="type5">Type 5</option>
+                </select>
+                <label for="expected_delivery_date">Expected Delivery Date:</label>
+                <input type="date" id="expected_delivery_date" name="expected_delivery_date" required>
+                
+                <label for="delivery_number">Delivery Number:</label>
+                <input type="text" id="delivery_number" name="delivery_number" placeholder="Delivery Number" required>
+                
+                <label for="batch_id">Batch ID:</label>
+                <input type="text" id="batch_id" name="batch_id" placeholder="Batch ID" required>
+                
+                <label for="shipment_description">Shipment Description:</label>
+                <textarea id="shipment_description" name="shipment_description" placeholder="Shipment Description" required></textarea>
+                
+                <div class="btn-container">
+                    <input type="button" class="clear" value="Clear Details" onclick="clearForm()">
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Drawer Button -->
+    <div class="header_toggle">
+        <h1 style="margin-left:20px;"> <i class='bx bx-menu' onclick="openDrawer()" ></i></h1>
+    </div>
+
+    <!-- Drawer -->
+    <div class="drawer" id="myDrawer">
+        <div class="company-logo" style="margin-top:0px">
+            <img src="/static/exf_logo.png" alt="Company Logo" style="width: 230px;">
+        </div>
+        <div class="nav_list">
+            <a href="/Dashboard" class="nav_link">
+                <i class='bx bx-grid-alt nav_icon'></i>
+                <span class="nav_name">Dashboard</span>
+            </a>
+            <a href="/my_account" class="nav_link">
+                <i class='bx bx-user nav_icon'></i>
+                <span class="nav_name">My Account</span>
+            </a>
+            <a href="/my_shipment" class="nav_link">
+                <i class='bx bxs-book-content'></i>
+                <span class="nav_name">My Shipment</span>
+            </a>
+            <a href="/New_shipment" class="nav_link">
+                <i class='bx bxs-truck'></i>
+                <span class="nav_name">New Shipment</span>
+            </a>
+            <a href="/device_data" class="nav_link deviceData">
+                <i class='bx bx-hdd'></i>
+                <span class="nav_name">Device Data</span>
+            </a>
+        </div>
+        <a href="/sign out" class="nav_link logout">
+            <i class='bx bx-log-out nav_icon'></i>
+            <span class="nav_name">Sign Out</span>
+        </a>
+    </div>
+
+    <script>
+        function clearForm() {
+            document.getElementById("shipment_number").value = "";
+            document.getElementById("route_details").selectedIndex = 0;
+            document.getElementById("device").selectedIndex = 0;
+            document.getElementById("po_number").value = "";
+            document.getElementById("ndc_number").value = "";
+            document.getElementById("serial_number").value = "";
+            document.getElementById("container_number").value = "";
+            document.getElementById("goods_type").selectedIndex = 0;
+            document.getElementById("expected_delivery_date").value = "";
+            document.getElementById("delivery_number").value = "";
+            document.getElementById("batch_id").value = "";
+            document.getElementById("shipment_description").value = "";
+        }
+
+        function openDrawer() {
+            document.getElementById("myDrawer").style.width = "250px";
+        }
+
+        function closeDrawer() {
+            document.getElementById("myDrawer").style.width = "0";
+        }
+    </script>
+</body>
+</html>

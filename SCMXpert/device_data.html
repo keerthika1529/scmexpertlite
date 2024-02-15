@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <title>New Page</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+             body {
+            font-family: boxicons !important;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            margin: 0;
+            /* Set background image */
+            background-image: url('/static/sea-freight.jpg');
+            background-size: cover; /* Adjust background size as needed */
+            background-position: center; /* Adjust background position as needed */
+        }
+        /* Drawer styles */
+        .drawer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 258px;
+            height: 100%;
+            background-color: #181717;
+            padding-top: 60px; /* Adjust padding for logo */
+            box-sizing: border-box;
+            z-index: 999;
+            overflow-y: auto;
+            transition: 0.5s;
+        }
+
+        .nav_list {
+            padding-top: -11px; /* Adjust padding for logo */
+            text-align: left; /* Align text to the left */
+        }
+
+        .nav_link {
+            display: block;
+            padding: 15px 20px;
+            text-decoration: none;
+            font-size: 22px;
+            color: #818181;
+            transition: 0.3s;
+            text-align: left; /* Align text to the left */
+        }
+
+        .nav_icon {
+            margin-right: 10px; /* Add margin to the right of the icons */
+        }
+
+        .nav_link:hover {
+            background-color: #555;
+            color: #fff;
+        }
+
+        /* Slideshow styles */
+        .slideshow {
+            position: fixed;
+            top: 0;
+            left: 258px; /* Adjust to match the width of the drawer */
+            width: calc(100% - 258px); /* Adjust width to accommodate drawer */
+            height: 100vh;
+            overflow: hidden; /* Hide overflow to prevent scroll bars */
+        }
+
+        .slideshow img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 3s ease-in-out;
+        }
+
+        .slideshow img.active {
+            opacity: 1;
+        }
+
+        /* Animation styles */
+        .welcome-text {
+            position: absolute;
+            top: 17%;
+            left: 53%;
+            transform: translate(-50%, -50%);
+            font-size: 45px;
+            color: rgb(17, 12, 12);
+            text-align: center;
+            opacity: 0;
+            transition: opacity 5s ease-in-out;
+        }
+        
+
+        .show-animation {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body id="body-pd">
+    <div class="drawer" id="myDrawer">
+        <form action="/device_data.html" method="POST">
+        <div class="company-logo" style="margin-top:0px">
+            <img src="/static/exf_logo.png" alt="Company Logo" style="width: 230px;">
+        </div>
+        <div class="nav_list">
+            <a href="/Dashboard" class="nav_link">
+                <i class='bx bx-grid-alt nav_icon'></i>
+                <span class="nav_name">Dashboard</span>
+            </a>
+            <a href="/my_account" class="nav_link">
+                <i class='bx bx-user nav_icon'></i>
+                <span class="nav_name">My Account</span>
+            </a>
+            <a href="/my_shipment" class="nav_link">
+                <i class='bx bxs-book-content'></i>
+                <span class="nav_name">My Shipment</span>
+            </a>
+            <a href="/New_shipment" class="nav_link">
+                <i class='bx bxs-truck'></i>
+                <span class="nav_name">New Shipment</span>
+            </a>
+            <!-- <a href="viewallshipments.html" class="nav_link viewShipments">
+                <i class='bx bx-package'></i>
+                <span class="nav_name">View Shipments</span> -->
+            </a>
+            <a href="/device_data" class="nav_link deviceData">
+                <i class='bx bx-hdd'></i>
+                <span class="nav_name">Device Data</span>
+            </a>
+        <a href="/sign out" class="nav_link logout">
+            <i class='bx bx-log-out nav_icon'></i>
+            <span class="nav_name">Sign Out</span>
+        </a>
+    </div>
+
+
+    <!-- Container Main start -->
+    <!-- Add your main content here -->
+    <!-- Container Main end -->
+
+    <script>
+        // JavaScript for slideshow and animation
+    </script>
+
+</body>
+
+</html>
