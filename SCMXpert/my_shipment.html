@@ -4,90 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/css/my_shipment.css">
     <title>My Shipment</title>
-    <style>
-        /* Drawer styles */
-        .drawer {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 258px;
-            height: 100%;
-            background-color: #181717;
-            padding-top: 60px; /* Adjust padding for logo */
-            box-sizing: border-box;
-            z-index: 999;
-            overflow-y: auto;
-            transition: 0.5s;
-        }
-
-        .nav_list {
-            padding-top: -11px; /* Adjust padding for logo */
-            text-align: left; /* Align text to the left */
-        }
-
-        .nav_link {
-            display: block;
-            padding: 15px 20px;
-            text-decoration: none;
-            font-size: 22px;
-            color: #818181;
-            transition: 0.3s;
-            text-align: left; /* Align text to the left */
-        }
-
-        .nav_icon {
-            margin-right: 10px; /* Add margin to the right of the icons */
-        }
-
-        .nav_link:hover {
-            background-color: #555;
-            color: #fff;
-        }
-
-        /* Table container styles */
-        #table-container {
-            width: calc(100% - 258px); /* Adjust width to accommodate drawer */
-            margin-left: 258px; /* Adjust to match the width of the drawer */
-        }
-
-        /* Table styles */
-    table {
-    max-width: 100%; /* Adjust the maximum width as needed */
-    width: auto; /* Let the table adjust its width based on content */
-    border-collapse: collapse;
-    padding: 10px;
-    margin-top: 20px;
-}
-
-        th,td {
-            border: 1px solid #1e94d8;
-            text-align: left;
-            padding: 8px;
-            font-size: 20px;
-            background-color: aliceblue;
-        }
-
-        th {
-            background-color: #1f93d6;
-            color: #fff;
-        }
-
-        h1 {
-            margin-top: 20px;
-            text-align: center;
-        }
-        body {
-            background-image: url("/static/sea-freight.jpg"); /* Replace with your image path */
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-position: center;
-            font-family:boxicons!important; /* Specify a fallback font */
-            margin: 0; /* Remove default margin */
-            padding: 100px; /* Remove default padding */
-        }
-    </style>
 </head>
 <body>
 <div class="drawer" id="myDrawer">
@@ -237,7 +155,10 @@
 //   .catch(error => {
 //     // Handle any errors that occurred during the fetch operation
 //     console.error('Fetch error:', error);
-//   });
+//   });\
+if (localStorage.getItem("token") === null) {
+    window.location.href = "/login";
+}
 </script>
 </body>
 </html>

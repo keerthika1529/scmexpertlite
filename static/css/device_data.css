@@ -1,5 +1,18 @@
-  /* Drawer styles */
-  .drawer {
+body {
+    font-family: boxicons !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    margin: 0;
+    /* Set background image */
+    background-image: url('/static/sea-freight.jpg');
+    background-size: cover; /* Adjust background size as needed */
+    background-position: center; /* Adjust background position as needed */
+}
+/* Drawer styles */
+.drawer {
     position: fixed;
     top: 0;
     left: 0;
@@ -72,6 +85,7 @@
     opacity: 0;
     transition: opacity 5s ease-in-out;
 }
+
 
 .show-animation {
     opacity: 1;

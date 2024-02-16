@@ -1,0 +1,90 @@
+body {
+    font-family:boxicons!important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+body {
+    font-family: boxicons !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    margin: 0;
+    /* Set background image */
+    background-image: url('/static/sea-freight.jpg');
+    background-size: cover; /* Adjust background size as needed */
+    background-position: center; /* Adjust background position as needed */
+}
+.heading {
+    text-align: center;
+    margin-top: 100px;
+    font-size: 38px;
+}
+
+.container {
+    width: 400px;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 158px; /* Adjust margin-top as needed */
+}
+
+.user-info-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.user-info-container div {
+    margin-bottom: 10px;
+}
+
+.user-info-container strong {
+    font-weight: bold;
+}
+
+/* Drawer styles */
+.drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 258px;
+    height: 100%;
+    background-color: #181717;
+    padding-top: 60px; /* Adjust padding for logo */
+    box-sizing: border-box;
+    z-index: 999;
+    overflow-y: auto;
+    transition: 0.5s;
+}
+
+.nav_list {
+    padding-top: -11px; /* Adjust padding for logo */
+    text-align: left; /* Align text to the left */
+}
+
+.nav_link {
+    display: block;
+    padding: 15px 20px;
+    text-decoration: none;
+    font-size: 22px;
+    color: #818181;
+    transition: 0.3s;
+    text-align: left; /* Align text to the left */
+}
+
+.nav_icon {
+    margin-right: 10px; /* Add margin to the right of the icons */
+}
+
+.nav_link:hover {
+    background-color: #555;
+    color: #fff;
+}
