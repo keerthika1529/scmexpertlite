@@ -475,6 +475,7 @@ border: 2px solid #ccc; /* Add border to make it more visible */
 border-radius: 5px; /* Add border-radius for rounded corners */
 margin-right: 10px; /* Adjust margin as needed */
 }
+
 body {
 overflow: hidden;
 }

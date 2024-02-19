@@ -8,7 +8,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="/static/css/device_data.css">
 </head>
-
 <body id="body-pd">
     <div class="drawer" id="myDrawer">
         <form action="/device_data.html" method="POST">
@@ -40,22 +39,12 @@
                 <i class='bx bx-hdd'></i>
                 <span class="nav_name">Device Data</span>
             </a>
-        <a href="/sign out" class="nav_link logout">
+        <a href="/" class="nav_link logout">
             <i class='bx bx-log-out nav_icon'></i>
             <span class="nav_name">Sign Out</span>
         </a>
     </div>
-    
-    <!-- Container Main start -->
-    <!-- Add your main content here -->
-    <!-- Container Main end -->
-
-    <script>
-        // JavaScript for slideshow and animation
-        if (localStorage.getItem("token") === null) {
-    window.location.href = "/login";
-}
-    </script>
+    <script src="/static/js/device_data.js"></script>
 
 </body>
 

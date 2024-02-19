@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Account</title>
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="/static/css/my_account.css">
 </head>
 <body>
@@ -36,121 +37,26 @@
                 <span class="nav_name">Device Data</span>
             </a>
         </div>
-        <a href="/sign out" class="nav_link logout">
+        <a href="/" class="nav_link logout">
             <i class='bx bx-log-out nav_icon'></i>
             <span class="nav_name">Sign Out</span>
         </a>
     </div>
-
     <h1 class="heading">My Account</h1>
     <div class="container">
         <div class="user-info-container">
             <div>
                 <strong>Username:</strong> <span id="username"></span>
+                <!-- <p class="about" id="username" style="color: brown;"></p> -->
             </div>
             <div>
-                <strong>Email:</strong> <span id="email"></span>
+                <strong>Email:</strong> <span id="Email"></span>
             </div>
             <div>
                 <strong>Role:</strong> <span id="role"></span>
             </div>
         </div>
     </div>
-
-    <script>
-        // Retrieve user information from localStorage or any other source
-        var userInfo = {
-            username: "demo",
-            email: "demo@example.com",
-            role: "Admin"
-        };
-
-        // Update the DOM with user information
-        document.getElementById("username").innerText = userInfo.username;
-        document.getElementById("email").innerText = userInfo.email;
-        document.getElementById("role").innerText = userInfo.role;
-
-//         // Function to check if the user is logged in
-// function checkAuthentication() {
-//         const accessToken = localStorage.getItem("access_token");
-
-//         if (!accessToken) {
-//             window.location.href = "/sign";
-//         }
-//     }
-
-//     // Call the function to check authentication
-//     checkAuthentication();
-//         var slides = document.querySelectorAll(".slideshow img");
-//         var currentSlide = 0;
-//         var welcomeText = document.getElementById('welcomeText');
-
-//         function showSlide(index) {
-//             // Hide all slides
-//             slides.forEach(function (slide) {
-//                 slide.classList.remove("active");
-//             });
-
-//             // Show the selected slide
-//             slides[index].classList.add("active");
-
-//             // Update welcome text
-//             var texts = ["Hi Buddy!", "Welcome To SCMXPerLite", "Hi buddy!Welcome to SCMXPerLite"];
-//             welcomeText.textContent = texts[index];
-//         }
-
-//         function nextSlide() {
-//             currentSlide = (currentSlide + 1) % slides.length;
-//             showSlide(currentSlide);
-//         }
-
-//         // Show the first slide initially
-//         showSlide(currentSlide);
-
-//         // Start the slideshow
-//         var slideshowInterval = setInterval(nextSlide, 3000);
-
-//         // Add animation class to welcome text
-//         setTimeout(function () {
-//             welcomeText.classList.add('show-animation');
-//         }, 1000); // Adjust the delay as needed
-//         localStorage.setItem("access_token", "{{ access_token }}");
-
-//         // Storing the access token in localStorage
-// localStorage.setItem('access_token', 'your_access_token_here');
-
-// // Retrieving the access token from localStorage
-// const accessToken = localStorage.getItem('access_token');
-
-// // Removing the access token from localStorage
-// localStorage.removeItem('access_token');
-// // Specify the URL from which you want to fetch data
-// const url = 'https://api.example.com/data';
- 
-// // Make a GET request to the specified URL
-// fetch(url)
-//   .then(response => {
-//     // Check if the request was successful (status code 200)
-//     if (response.ok) {
-//       // Parse the response as JSON
-//       return response.json();
-//     } else {
-//       // If the request was not successful, throw an error
-//       throw new Error('Network response was not ok.');
-//     }
-//   })
-//   .then(data => {
-//     // Handle the JSON data returned from the server
-//     console.log('Data:', data);
-//     // Do something with the data...
-//   })
-//   .catch(error => {
-//     // Handle any errors that occurred during the fetch operation
-//     console.error('Fetch error:', error);
-//   });
-if (localStorage.getItem("token") === null) {
-    window.location.href = "/login";
-}
-    </script>
+    <script src="/static/js/my_account.js"></script>
 </body>
 </html>
