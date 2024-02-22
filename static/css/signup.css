@@ -410,7 +410,7 @@ form.sign-in-form {
 width: 250px;
 height: 100px;
 display: -ms-inline-flexbox;
-flex-direction: row; /* Change to row to align buttons horizontally */
+flex-direction: row; 
 align-items: center;
 justify-content: center;
 margin: auto;
@@ -430,7 +430,7 @@ margin: auto;
 display: flex;
 align-items: center;
 justify-content: center;
-margin-bottom: 5px; /* Adjust the margin as needed */
+margin-bottom: 5px; 
 }
 
 #captcha {
@@ -439,7 +439,7 @@ height: 50px;
 }
 
 #refreshButton {
-margin-left: 5px; /* Adjust the margin as needed */
+margin-left: 5px; 
 }
 
 .input-wrapper {
@@ -449,11 +449,11 @@ justify-content: center;
 }
 
 #textBox {
-margin-right: 5px; /* Adjust the margin as needed */
+margin-right: 5px; 
 }
 
 #submitButton {
-margin-left: 5px; /* Adjust the margin as needed */
+margin-left: 5px;
 }
 
 .input-field {
@@ -468,12 +468,12 @@ margin-left: 5px; /* Adjust the margin as needed */
     cursor: pointer;
 }
 #textBox {
-width: 200px; /* Adjust width as needed */
-height: 40px; /* Adjust height as needed */
-padding: 10px; /* Add padding for better appearance */
-border: 2px solid #ccc; /* Add border to make it more visible */
-border-radius: 5px; /* Add border-radius for rounded corners */
-margin-right: 10px; /* Adjust margin as needed */
+width: 200px; 
+height: 40px; 
+padding: 10px;
+border: 2px solid #ccc; 
+border-radius: 5px; 
+margin-right: 10px;
 }
 
 body {

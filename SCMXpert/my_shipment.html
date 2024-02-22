@@ -41,6 +41,7 @@
     </div>
 </div>
 <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;My Shipment</h1>
+<input type="text" id="search" placeholder="Search...">
 <div id="table-container">
     <table>
       <thead>
@@ -61,25 +62,12 @@
         </tr>
       </thead>
       <tbody id="data">
-        <!-- {% for shipment in shipments %}
-        <tr>
-            <td>{{ shipment.Shipment_Number }}</td>
-            <td>{{ shipment.container_number }}</td>
-            <td>{{ shipment.Route_details }}</td>
-            <td>{{ shipment.Goods_types }}</td>
-            <td>{{ shipment.Device }}</td>
-            <td>{{ shipment.Expected_Delivery_date }}</td>
-            <td>{{ shipment.Po_number }}</td>
-            <td>{{ shipment.Delivery_number }}</td>
-            <td>{{ shipment.Ndc_Number }}</td>
-            <td>{{ shipment.Batch_id }}</td>
-            <td>{{ shipment.Serial_number_of_goods }}</td>
-            <td>{{ shipment.Shipment_Description }}</td>
-        </tr>
-        {% endfor %} -->
       </tbody>
     </table>
 </div>
 <script src="/static/js/my_shipment.js"></script>
 </body>
 </html>
+
+
+

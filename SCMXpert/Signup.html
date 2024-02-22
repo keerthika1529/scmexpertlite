@@ -10,13 +10,12 @@
   <div class="container">
     <div class="forms-container">
       <div class="signin-signup">
-        <form action="/login"  method="post"  class="sign-in-form">
+        <form action="/login"  method="post"  class="sign-in-form"> 
           <h1>SCMXPertLite</h1>
           <h2 class="title">Sign in</h2>
- 
           <div class="input-field">
             <i class="fas fa-user"></i>
-            <input type="text" name="email" placeholder="Username"  required/>
+            <input type="text" name="email" placeholder="Email"  required/>
           </div>
           <div class="input-field">
             <i class="fas fa-lock"></i>
@@ -33,15 +32,13 @@
                <input type="text" id="textBox" placeholder="Enter captcha"required />
               <button id="submitButton" type="button">Submit</button>
             </div>
-          </div>
-          <div class="buttons-container">
+          <!-- <div class="buttons-container"> -->
             <!-- <button id="refreshButton" type="submit">↻</button> -->
           </div>
           <span id="output"></span>
           <input type="submit" value="Login" class="btn solid" />
         </form>
-        <div id="emailExistsMessage" style="display: none; color: red;">Email already exists!</div>
-        <form class="sign-up-form" method="post" action="/signup">  <div id="message" class="success-message" style="color: red;"> {% if message %} <p>{{ message }}</p> {% endif %}</div>
+        <form class="sign-up-form" method="post" action="/signup"><div id="message" class="success-message" style="color: red;"> {% if message %} <p>{{ message }}</p> {% endif %}</div>
           <h1>SCMXPertLite</h1> 
           <h2 class="title">Sign up</h2>
           <div class="input-field">

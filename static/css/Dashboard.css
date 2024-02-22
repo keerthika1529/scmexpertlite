@@ -6,7 +6,7 @@
     width: 258px;
     height: 100%;
     background-color: #181717;
-    padding-top: 60px; /* Adjust padding for logo */
+    padding-top: 60px; 
     box-sizing: border-box;
     z-index: 999;
     overflow-y: auto;
@@ -14,8 +14,8 @@
 }
 
 .nav_list {
-    padding-top: -11px; /* Adjust padding for logo */
-    text-align: left; /* Align text to the left */
+    padding-top: -11px;
+    text-align: left; 
 }
 
 .nav_link {
@@ -25,11 +25,11 @@
     font-size: 22px;
     color: #818181;
     transition: 0.3s;
-    text-align: left; /* Align text to the left */
+    text-align: left;
 }
 
 .nav_icon {
-    margin-right: 10px; /* Add margin to the right of the icons */
+    margin-right: 10px; 
 }
 
 .nav_link:hover {
@@ -41,10 +41,10 @@
 .slideshow {
     position: fixed;
     top: 0;
-    left: 258px; /* Adjust to match the width of the drawer */
-    width: calc(100% - 258px); /* Adjust width to accommodate drawer */
+    left: 258px;
+    width: calc(100% - 258px);
     height: 100vh;
-    overflow: hidden; /* Hide overflow to prevent scroll bars */
+    overflow: hidden; 
 }
 
 .slideshow img {

@@ -4,17 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-    <title>Dashboard</title>
-    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <title>New_shiment</title>
     <link rel="stylesheet" href="/static/css/New_shipment.css">
     <script src="https://code.jquery.com/jquery-3.7.1.slim.js"
         integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc=" crossorigin="anonymous"></script>
 </head>
 <body>
     <h1 style="text-align:center;font-size:42px">
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create a New Shipment</h1>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbspCreate a New Shipment</h1>
     <div class="container">
-        <!-- <form action="/New_shipment" method="POST"> -->
             <span id="error"></span>
         <form>
             <div class="left-col">
@@ -40,10 +38,8 @@
                 </select>
                 <label for="po_number">Po Number:</label>
                 <textarea id="po_number" name="po_number" placeholder="Po Number" required></textarea>
-
                 <label for="ndc_number">NDC Number:</label>
                 <input type="text" id="ndc_number" name="ndc_number" placeholder="NDC Number" required>
-
                 <label for="serial_number">Serial Number of Goods:</label>
                 <input type="text" id="serial_number" name="serial_number" placeholder="Serial Number of Goods"
                     required>
@@ -81,13 +77,17 @@
                 <div class="btn-container">
                     <input type="button" class="clear" value="Clear Details" onclick="clearForm()">
                 </div>
+                <div id="error">
+                    <div class="alert alert-info" id="shipmentSuccess" style="display: none;"></div>
+                    <div class="alert alert-danger" id="shipmentError" style="display: none;"></div>
+                </div>
             </div>
         </form>
     </div>
     <!-- Drawer Button -->
-    <div class="header_toggle">
+    <!-- <div class="header_toggle">
         <h1 style="margin-left:20px;"> <i class='bx bx-menu' onclick="openDrawer()"></i></h1>
-    </div>
+    </div> -->
 
     <!-- Drawer -->
     <div class="drawer" id="myDrawer">

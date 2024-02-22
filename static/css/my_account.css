@@ -16,10 +16,9 @@ body {
     justify-content: flex-start;
     height: 100vh;
     margin: 0;
-    /* Set background image */
     background-image: url('/static/sea-freight.jpg');
-    background-size: cover; /* Adjust background size as needed */
-    background-position: center; /* Adjust background position as needed */
+    background-size: cover;
+    background-position: center; 
 }
 .heading {
     text-align: center;
@@ -33,7 +32,7 @@ body {
     border-radius: 10px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 158px; /* Adjust margin-top as needed */
+    margin-top: 158px; 
 }
 
 .user-info-container {
@@ -57,7 +56,7 @@ body {
     width: 258px;
     height: 100%;
     background-color: #181717;
-    padding-top: 60px; /* Adjust padding for logo */
+    padding-top: 60px; 
     box-sizing: border-box;
     z-index: 999;
     overflow-y: auto;
@@ -65,8 +64,8 @@ body {
 }
 
 .nav_list {
-    padding-top: -11px; /* Adjust padding for logo */
-    text-align: left; /* Align text to the left */
+    padding-top: -11px; 
+    text-align: left; 
 }
 
 .nav_link {
@@ -76,11 +75,11 @@ body {
     font-size: 22px;
     color: #818181;
     transition: 0.3s;
-    text-align: left; /* Align text to the left */
+    text-align: left;
 }
 
 .nav_icon {
-    margin-right: 10px; /* Add margin to the right of the icons */
+    margin-right: 10px; 
 }
 
 .nav_link:hover {

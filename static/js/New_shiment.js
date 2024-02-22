@@ -1,27 +1,3 @@
-function clearForm() {
-    document.getElementById("shipment_number").value = "";
-    document.getElementById("route_details").selectedIndex = 0;
-    document.getElementById("device").selectedIndex = 0;
-    document.getElementById("po_number").value = "";
-    document.getElementById("ndc_number").value = "";
-    document.getElementById("serial_number").value = "";
-    document.getElementById("container_number").value = "";
-    document.getElementById("goods_type").selectedIndex = 0;
-    document.getElementById("expected_delivery_date").value = "";
-    document.getElementById("delivery_number").value = "";
-    document.getElementById("batch_id").value = "";
-    document.getElementById("shipment_description").value = "";
-}
-
-function openDrawer() {
-    document.getElementById("myDrawer").style.width = "250px";
-}
-
-function closeDrawer() {
-    document.getElementById("myDrawer").style.width = "0";
-}
-
-
 $(document).ready(function () {
     document.getElementById("enter").addEventListener("click", function (event) {
         event.preventDefault();
@@ -47,11 +23,39 @@ $(document).ready(function () {
             },
             body: form,
         }).then(response => {
-            console.log(response)
-        })
+            if (response.ok) {
+                return response.json(); // Parse the JSON response
+            } else {
+                throw new Error('Failed to create shipment');
+            }
+        }).then(data => {
+            // Display the success message
+            alert(data.msg);
+            // Clear form fields after successful submission
+            clearForm();
+        }).catch(error => {
+            // Display the error message
+            console.error('Error:', error);
+            alert('Failed to create shipment');
+        });
     })
 })
 
+function clearForm() {
+    document.getElementById("shipment_number").value = "";
+    document.getElementById("route_details").selectedIndex = 0;
+    document.getElementById("device").selectedIndex = 0;
+    document.getElementById("po_number").value = "";
+    document.getElementById("ndc_number").value = "";
+    document.getElementById("serial_number").value = "";
+    document.getElementById("container_number").value = "";
+    document.getElementById("goods_type").selectedIndex = 0;
+    document.getElementById("expected_delivery_date").value = "";
+    document.getElementById("delivery_number").value = "";
+    document.getElementById("batch_id").value = "";
+    document.getElementById("shipment_description").value = "";
+}
+
 if (localStorage.getItem("token") === null) {
-window.location.href = "/";
+    window.location.href = "/";
 }

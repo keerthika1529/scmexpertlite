@@ -24,7 +24,6 @@ app = FastAPI()
 app.mount("/static", StaticFiles(directory=os.path.join(os.path.dirname(__file__), "static")), name="static")
 
 mongo_uri = "mongodb+srv://keerthika:keerthika@cluster0.68jkqi1.mongodb.net/"
-
 mongodb_connection = MongoClient(mongo_uri)
 
 database = mongodb_connection["SCM"]
@@ -86,13 +85,6 @@ class Newshipment(BaseModel):
     Serial_number_of_goods:str
     Shipment_Description:str
 
-# Global variables
-# create = 0
-# delete = 0
-# update = 0
-# mail = ""
-# Role = ""
-
 SECRET_KEY=os.getenv("SECRET_KEY")
 ALGORITHM=os.getenv("ALGORITHM")
 ACCESS_TOKEN_EXPIRE_SECONDS = os.getenv("ACCESS_TOKEN_EXPIRE_SECONDS")
@@ -140,26 +132,15 @@ def get_current_user(token: str = Depends(oauth2_scheme)):
 def signup(request: Request):
     return templates.TemplateResponse("Signup.html", {"request": request})
 
-# @app.post("/signup", response_class=HTMLResponse)
-# def post_signup(request: Request, name: str = Form(...), email: str = Form(...), password: str = Form(...), confirmpassword: str = Form(...)):
-#     # Check if the email already exists in the signup collection
-#     hashed_password = hash_password(password)
-#     if password != confirmpassword:
-#          return HTMLResponse(content="Passwords do not match", status_code=400)
-#     data = Signup(UserName=name, Email=email, Password=hashed_password, Confirm_Password=hashed_password)
-#     sign_up=collection.insert_one(dict(data))
-#     # Redirect to the login page upon successful signups
-#     return RedirectResponse("/", status_code=303)
-
-
 @app.post("/signup", response_class=HTMLResponse)
 def post_signup(request: Request, name: str = Form(...), email: str = Form(...), password: str = Form(...), confirmpassword: str = Form(...)):
     existing_user = collection.find_one({"Email": email})
     if existing_user:
-        return templates.TemplateResponse("signup.html", {"request": request, "message": "Email already exists"})
+        return templates.TemplateResponse("signup.html", {"request": request, "message": "Email already exists please try to Login"})
     hashed_password = hash_password(password)
     if password != confirmpassword:
         return templates.TemplateResponse("signup.html", {"request": request, "message": "Passwords do not match"})
+        #  return JSONResponse(content={"message": "Password does not match"}, status_code=401)
     data = Signup(UserName=name, Email=email, Password=hashed_password, Confirm_Password=hashed_password)
     sign_up=collection.insert_one(dict(data))
     return RedirectResponse("/", status_code=303)
@@ -168,12 +149,36 @@ def post_signup(request: Request, name: str = Form(...), email: str = Form(...),
 @app.post("/login", response_class=HTMLResponse)
 def verify_user(request: Request, email: str = Form(...), password: str = Form(...)):
         user= authenticate_user(email,password)
+        if not user:
+         return JSONResponse(content={"message": "Password does not match"}, status_code=401)
+         
         existing_user = collection.find_one({"Email": email})
         if user:
             access_token = create_access_token(data={"sub": user["UserName"], "email": user["Email"],"role":user["Role"]})
             # print(access_token)
             return JSONResponse(content={"token":access_token,"user":user["UserName"],"email": user["Email"],"role":user["Role"]},status_code=200)
-    
+
+
+# @app.post("/login", response_class=HTMLResponse)
+# def verify_user(request: Request, email: str = Form(...), password: str = Form(...), captcha: str = Form(...)):
+#     user = authenticate_user(email, password)
+#     if not user:
+#         return JSONResponse(content={"message": "Password does not match"}, status_code=401)
+
+#     # Validate the captcha
+#     if not verify_captcha(captcha):
+#         return JSONResponse(content={"message": "Incorrect captcha"}, status_code=401)
+
+#     access_token = create_access_token(data={"sub": user["UserName"], "email": user["Email"], "role": user["Role"]})
+#     return JSONResponse(content={"token": access_token, "user": user["UserName"], "email": user["Email"], "role": user["Role"]}, status_code=200)
+
+# def verify_captcha(captcha: str):
+#     # Implement your captcha verification logic here
+#     # For example, compare the captcha value with the expected value
+#     expected_captcha = "123456"  # Change this to your generated captcha value
+#     return captcha == expected_captcha
+
+
 
 @app.get("/Dashboard", response_class=HTMLResponse)
 async def dashboard(request: fastapi.Request):
@@ -202,32 +207,31 @@ async def my_shipment(request:Request,token: dict = Depends(get_current_user)):
         return JSONResponse(content=shipment,status_code=200)
     except Exception as e:
         return e
-    
 
 @app.get("/New_shipment", response_class=HTMLResponse)
 async def dashboard(request: fastapi.Request):
     return templates.TemplateResponse("New_shipment.html", {"request": request})
-
 
 @app.post("/New_shipment")
 def add_task(request: Request, shipment_number:str =Form(...), route_details: str =Form(...), device: str = Form(...), po_number: str = Form(...),
              ndc_number: str = Form(...), serial_number: str = Form(...),container_number: str = Form(...),goods_type: str = Form(...),
              expected_delivery_date: str = Form(...),delivery_number: str = Form(...),
              batch_id: str = Form(...),shipment_description: str = Form(...), user : dict =Depends(get_current_user)):
-            try:
-                data = Newshipment(Email=user["Email"],Shipment_Number=shipment_number, container_number=container_number, Route_details=route_details, Goods_types=goods_type, Device=device,
-                                    Expected_Delivery_date=expected_delivery_date,Po_number=po_number,Delivery_number=delivery_number,Ndc_Number= ndc_number,
-                                    Batch_id= batch_id,Serial_number_of_goods= serial_number,Shipment_Description=shipment_description)
-                New_shipment = collection1.insert_one(dict(data))
-                return JSONResponse(content={"msg" :"created successfully"},status_code=200)
-            except Exception:
-                pass 
-
+    try:
+        # Check if the shipment number already exists
+        if collection1.find_one({"Shipment_Number": shipment_number}):
+          return JSONResponse(content={"msg": "Shipment number already exists", "status_code": 400})
+        data = Newshipment(Email=user["Email"],Shipment_Number=shipment_number, container_number=container_number, Route_details=route_details, Goods_types=goods_type, Device=device,
+                            Expected_Delivery_date=expected_delivery_date,Po_number=po_number,Delivery_number=delivery_number,Ndc_Number= ndc_number,
+                            Batch_id= batch_id,Serial_number_of_goods= serial_number,Shipment_Description=shipment_description)
+        New_shipment = collection1.insert_one(dict(data))
+        return JSONResponse(content={"msg" :"created successfully"},status_code=200)
+    except Exception:
+        pass
 
 @app.get("/device_data", response_class=HTMLResponse)
 async def dashboard(request: fastapi.Request):
     return templates.TemplateResponse("device_data.html", {"request": request})
-
 
 @app.get("/admin", response_class=HTMLResponse)
 def admin(request: Request):

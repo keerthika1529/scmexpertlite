@@ -7,8 +7,8 @@ body {
     padding: 100px;
     overflow: hidden;
 }
-.container {
-    max-width: 800px;
+/* .container {
+    max-width: 940px;
     margin: 0 auto;
     background-color: #31a3e6;
     margin-right: 300px;
@@ -16,7 +16,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     padding: 20px;
-}
+} */
 
 .left-col, .right-col {
     float: left;
@@ -73,16 +73,13 @@ input[type="button"].clear {
 .btn-container {
 display: flex;
 justify-content: space-between;
-align-items: flex-start; /* Align items to the start of the container */
+align-items: flex-start;
 margin-top: 20px;
 }
 
 .btn-container input[type="button"].clear {
-/* Remove margin-left and add margin-top to align with other buttons */
 margin: 15px 0 0;
 }
-
-
 
 /* Drawer styles */
 .drawer {
@@ -92,7 +89,7 @@ left: 0;
 width: 258px;
 height: 100%;
 background-color: #181717;
-padding-top: 60px; /* Adjust padding for logo */
+padding-top: 60px;
 box-sizing: border-box;
 z-index: 999;
 overflow-y: auto;
@@ -100,8 +97,8 @@ transition: 0.5s;
 }
 
 .nav_list {
-padding-top: -11px; /* Adjust padding for logo */
-text-align: left; /* Align text to the left */
+padding-top: -11px; 
+text-align: left; 
 }
 
 .nav_link {
@@ -111,11 +108,11 @@ text-decoration: none;
 font-size: 22px;
 color: #818181;
 transition: 0.3s;
-text-align: left; /* Align text to the left */
+text-align: left; 
 }
 
 .nav_icon {
-margin-right: 10px; /* Add margin to the right of the icons */
+margin-right: 10px;
 }
 
 .nav_link:hover {
@@ -125,39 +122,45 @@ color: #fff;
 .left-col,
 .right-col {
 float: left;
-width: 50%; /* Set both columns to occupy 50% of the container */
+width: 50%; 
 padding: 25px;
 box-sizing: border-box;
 }
 
 .container {
-max-width: 800px;
+max-width: 940px;
 margin: 0 auto;
-background-color: #31a3e6;
+background-color: #1c60db26;
 border-radius: 10px;
 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 overflow: hidden;
 padding: 20px;
-display: flex; /* Use flexbox for equal height columns */
-margin-right: 310px;
+display: flex;
+margin-right: 250px;
 }
 
-/* Optional: Adjust padding or margins for spacing */
 .container .left-col,
 .container .right-col {
-padding: 25px 20px; /* Adjust padding for equal spacing */
+padding: 25px 20px; 
 }
 
-/* Optional: Adjust input width for better alignment */
 .container input,
 .container select,
 .container textarea {
-width: 100%; /* Make inputs fill the entire column */
+width: 100%; 
 }
 
-/* Set a fixed height for the textareas */
 textarea {
-height: 50px; /* Adjust the height as needed */
+height: 50px;
 overflow: hidden;
-resize: none; /* Prevent resizing */
+resize: none; 
+}
+
+form {
+    display: block;
+    margin-top: 0em;
+    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Shadow effect */
+    padding: 20px; /* Padding for spacing */
 }
