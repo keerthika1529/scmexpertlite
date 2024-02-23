@@ -6,3 +6,8 @@ $(document).ready(function(){
   $("#Email").text(`${sessionStorage.getItem("email")}`);
   $("#role").text(` ${sessionStorage.getItem("role")}`);
 });
+function logout() {
+  localStorage.removeItem("token");
+  sessionStorage.clear()
+  window.location.href= "/";
+  }

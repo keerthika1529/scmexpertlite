@@ -11,63 +11,55 @@ sign_in_btn.addEventListener("click", () => {
   container.classList.remove("sign-up-mode");
 })
 
-let captchaText = document.getElementById('captcha');
-var ctx = captchaText.getContext("2d");
+// let captchaText = document.getElementById('captcha');
+// var ctx = captchaText.getContext("2d");
 
-let userText = document.getElementById('textBox');
-let submitButton = document.getElementById('submitButton');
-let output = document.getElementById('output');
-let refreshButton = document.getElementById('refreshButton');
-var captchaStr = "";
-let alphaNums = ['A', 'B', 'C', 'D', 'E', 'F', 'G',
-  'H', 'I', 'J', 'K', 'L', 'M', 'N',
-  'O', 'P', 'Q', 'R', 'S', 'T', 'U',
-  'V', 'W', 'X', 'Y', 'Z', 'a', 'b',
-  'c', 'd', 'e', 'f', 'g', 'h', 'i',
+// let userText = document.getElementById('textBox');
+// let submitButton = document.getElementById('submitButton');
+// let output = document.getElementById('output');
 
-  'j', 'k', 'l', 'm', 'n', 'o', 'p',
-  'q', 'r', 's', 't', 'u', 'v', 'w',
-  'x', 'y', 'z', '0', '1', '2', '3',
-  '4', '5', '6', '7', '8', '9'];
-function generate_captcha() {
-  let emptyArr = [];
+    // captcha generator
+    function generateCaptcha() {
+      const captchaElement = document.getElementById('captcha');
+      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      let captcha = '';
 
-  for (let i = 1; i <= 7; i++) {
-    emptyArr.push(alphaNums[Math.floor(Math.random() * alphaNums.length)]);
+      for (let i = 0; i < 6; i++) {
+          captcha += characters.charAt(Math.floor(Math.random() * characters.length));
+      }
+
+      captchaElement.textContent = captcha;
   }
-  captchaStr = emptyArr.join('');
-  ctx.clearRect(0, 0, captchaText.width, captchaText.height);
-  ctx.fillText(captchaStr, captchaText.width / 4, captchaText.height / 2);
-  output.innerHTML = "";
-}
-generate_captcha();
-submitButton.addEventListener('click', function () {
-  check_captcha();
-});
-refreshButton.addEventListener('click', function (event) {
-  generate_captcha();
-  event.preventDefault();
-});
-function check_captcha() {
-  if (userText.value === captchaStr) {
-    output.className = "correctCaptcha";
-    output.innerHTML = "Correct!";
-  } else {
-    output.className = "incorrectCaptcha";
-    output.innerHTML = "Incorrect, please try again!";
-  }
-}
-ctx.font = "50px Roboto";
-ctx.fillStyle = "#1a1a1a";
-generate_captcha();
 
-function displayAccessToken(token) {
-  const tokenDisplay = document.getElementById("token-display");
-  tokenDisplay.innerHTML = "<h3>Access Token:</h3><pre>" + token + "</pre>";
-}
+  // Initial captcha generation
+  generateCaptcha();
+
+  // Button click event for captcha generation
+  document.getElementById('refreshButton').addEventListener('click', function () {
+      generateCaptcha();
+  });
+
+
+
+
+// function displayAccessToken(token) {
+//   const tokenDisplay = document.getElementById("token-display");
+//   tokenDisplay.innerHTML = "<h3>Access Token:</h3><pre>" + token + "</pre>";
+// }
+
+
+
+
 
 async function handleLogin(event) {
   event.preventDefault();
+  const user=document.getElementById("captcha").textContent;;
+  const used=document.getElementById("textBox").value;
+  // console.log(user,used,"before if");
+  if(user !== used){
+   alert("incorrect captcha");
+   return;
+  }
   const form = new FormData();
   const email = document.querySelector(".sign-in-form input[name='email']").value;
   const password = document.querySelector(".sign-in-form input[name='password']").value;
@@ -82,11 +74,11 @@ async function handleLogin(event) {
   console.log("before data", response);
   if (response.ok) {
     const data = await response.json();
-    console.log(data, "im in data");
+    // console.log(data, "im in data");
     localStorage.setItem("token", data.token);
     sessionStorage.setItem("user", data.user);
     sessionStorage.setItem("email", data.email);
-    console.log(email)
+    // console.log(email)
     sessionStorage.setItem("role", data.role);
     window.location.href = "/Dashboard";
   } else {
@@ -134,3 +126,51 @@ function validateForm() {
   }
   return true;
 }
+
+// $(document).ready(function () {
+//   $("#signup_submit").on("click",function(event) {
+
+//   const form = new FormData();
+//   form.append("name",$("#username").val());
+//   form.append("email",$("#email").val());
+//   form.append("password",$("#signup-password").val());
+//   form.append("confirmpassword",$("#confirmPassword").val());
+  
+
+//     event.preventDefault();
+//   fetch("/signup", {
+//       method: "POST",
+//       body:form,
+      
+//   }).then(response => {
+//       return response.json();
+//     }).then(data => {
+//       alert(data.message);
+//     }).catch(error => {
+//       $("#message").text(error);
+//     })
+//   })
+//       });
+$(document).ready(function () {
+  $("#signup_submit").on("click", function (event) {
+      const form = new FormData();
+      form.append("name", $("#username").val());
+      form.append("email", $("#email").val());
+      form.append("password", $("#signup-password").val());
+      form.append("confirmpassword", $("#confirmPassword").val());
+
+      event.preventDefault();
+      fetch("/signup", {
+          method: "POST",
+          body: form,
+      }).then(response => {
+          return response.json();
+      }).then(data => {
+          alert(data.message);
+          // Reset the form fields after successful submission
+          $("#signup-form")[0].reset();
+      }).catch(error => {
+          $("#message").text(error);
+      });
+  });
+});

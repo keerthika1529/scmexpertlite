@@ -17,7 +17,7 @@ import jwt
 from fastapi.security import OAuth2PasswordBearer
 from fastapi import Depends, HTTPException, status, Request, Cookie
 from datetime import datetime, timedelta
-
+import re
 load_dotenv()
 
 app = FastAPI()
@@ -27,7 +27,6 @@ mongo_uri = "mongodb+srv://keerthika:keerthika@cluster0.68jkqi1.mongodb.net/"
 mongodb_connection = MongoClient(mongo_uri)
 
 database = mongodb_connection["SCM"]
-
 collection=database["signup"]
 collection1=database["shipment"]
  
@@ -132,18 +131,48 @@ def get_current_user(token: str = Depends(oauth2_scheme)):
 def signup(request: Request):
     return templates.TemplateResponse("Signup.html", {"request": request})
 
+# @app.post("/signup", response_class=HTMLResponse)
+# def post_signup(request: Request, name: str = Form(...), email: str = Form(...), password: str = Form(...), confirmpassword: str = Form(...)):
+#     existing_user = collection.find_one({"Email": email})
+#     if existing_user:
+#         # return templates.TemplateResponse("signup.html", {"request": request, "message": "Email already exists please try to Login"})
+#         return JSONResponse(content={ "message": "Email already exists please try to Login"},status_code=400)
+
+#     hashed_password = hash_password(password)
+#     if len(password) < 8:
+#         return JSONResponse(content={ "message": "Passwords should be greater than 8 "},status_code=400)
+    
+#     if password != confirmpassword:
+#         return JSONResponse(content={ "message": "Passwords do not match"},status_code=400)
+#         # return templates.TemplateResponse("signup.html", {"request": request, "message": "Passwords do not match"})
+#         #  return JSONResponse(content={"message": "Password does not match"}, status_code=401)
+#     data = Signup(UserName=name, Email=email, Password=hashed_password, Confirm_Password=hashed_password)
+#     collection.insert_one(dict(data))
+#     return JSONResponse(content={ "message": "Register Successfully"},status_code=200)
+
 @app.post("/signup", response_class=HTMLResponse)
-def post_signup(request: Request, name: str = Form(...), email: str = Form(...), password: str = Form(...), confirmpassword: str = Form(...)):
+def post_signup(request: Request, name: str = Form(None), email: str = Form(None), password: str = Form(None), confirmpassword: str = Form(None)):
+    if not name:
+        return JSONResponse(content={ "message": "Username is required"},status_code=400)
+    if not email:
+        return JSONResponse(content={ "message": "Email is required"},status_code=400)
+    if '@' not in email:
+        return JSONResponse(content={ "message": "Email should contain @"},status_code=400)
+    if not password:
+        return JSONResponse(content={ "message": "Password is required"},status_code=400)
+    if not re.match(r'(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}', password):
+        return JSONResponse(content={ "message": "Password should be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit"},status_code=400)
+    if not confirmpassword:
+        return JSONResponse(content={ "message": "Confirm Password is required"},status_code=400)
     existing_user = collection.find_one({"Email": email})
     if existing_user:
-        return templates.TemplateResponse("signup.html", {"request": request, "message": "Email already exists please try to Login"})
-    hashed_password = hash_password(password)
+        return JSONResponse(content={ "message": "Email already exists please try to Login"},status_code=400)
     if password != confirmpassword:
-        return templates.TemplateResponse("signup.html", {"request": request, "message": "Passwords do not match"})
-        #  return JSONResponse(content={"message": "Password does not match"}, status_code=401)
+        return JSONResponse(content={ "message": "Passwords do not match"},status_code=400)
+    hashed_password = hash_password(password)
     data = Signup(UserName=name, Email=email, Password=hashed_password, Confirm_Password=hashed_password)
-    sign_up=collection.insert_one(dict(data))
-    return RedirectResponse("/", status_code=303)
+    collection.insert_one(dict(data))
+    return JSONResponse(content={ "message": "Register Successfully"},status_code=200)
 
 
 @app.post("/login", response_class=HTMLResponse)
@@ -151,7 +180,6 @@ def verify_user(request: Request, email: str = Form(...), password: str = Form(.
         user= authenticate_user(email,password)
         if not user:
          return JSONResponse(content={"message": "Password does not match"}, status_code=401)
-         
         existing_user = collection.find_one({"Email": email})
         if user:
             access_token = create_access_token(data={"sub": user["UserName"], "email": user["Email"],"role":user["Role"]})
@@ -177,7 +205,6 @@ def verify_user(request: Request, email: str = Form(...), password: str = Form(.
 #     # For example, compare the captcha value with the expected value
 #     expected_captcha = "123456"  # Change this to your generated captcha value
 #     return captcha == expected_captcha
-
 
 
 @app.get("/Dashboard", response_class=HTMLResponse)
@@ -208,9 +235,11 @@ async def my_shipment(request:Request,token: dict = Depends(get_current_user)):
     except Exception as e:
         return e
 
+
 @app.get("/New_shipment", response_class=HTMLResponse)
 async def dashboard(request: fastapi.Request):
     return templates.TemplateResponse("New_shipment.html", {"request": request})
+
 
 @app.post("/New_shipment")
 def add_task(request: Request, shipment_number:str =Form(...), route_details: str =Form(...), device: str = Form(...), po_number: str = Form(...),
@@ -228,6 +257,7 @@ def add_task(request: Request, shipment_number:str =Form(...), route_details: st
         return JSONResponse(content={"msg" :"created successfully"},status_code=200)
     except Exception:
         pass
+
 
 @app.get("/device_data", response_class=HTMLResponse)
 async def dashboard(request: fastapi.Request):

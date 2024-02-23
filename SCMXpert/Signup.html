@@ -4,13 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <link rel="stylesheet" href="/static/css/signup.css">
 </head>
 <body>
   <div class="container">
     <div class="forms-container">
       <div class="signin-signup">
-        <form action="/login"  method="post"  class="sign-in-form"> 
+        <form class="sign-in-form"> 
           <h1>SCMXPertLite</h1>
           <h2 class="title">Sign in</h2>
           <div class="input-field">
@@ -25,12 +26,12 @@
         <!-- Add the captcha container here -->
             <div class="captcha-container">
              <div class="captcha-wrapper">
-              <canvas id="captcha"></canvas>
+              <span id="captcha"></span>
               <button id="refreshButton" type="submit">↻</button>
             </div> 
             <div class="input-wrapper">
                <input type="text" id="textBox" placeholder="Enter captcha"required />
-              <button id="submitButton" type="button">Submit</button>
+              <!-- <button id="submitButton" type="button">Submit</button> -->
             </div>
           <!-- <div class="buttons-container"> -->
             <!-- <button id="refreshButton" type="submit">↻</button> -->
@@ -38,7 +39,7 @@
           <span id="output"></span>
           <input type="submit" value="Login" class="btn solid" />
         </form>
-        <form class="sign-up-form" method="post" action="/signup"><div id="message" class="success-message" style="color: red;"> {% if message %} <p>{{ message }}</p> {% endif %}</div>
+        <form class="sign-up-form" id="signup-form">
           <h1>SCMXPertLite</h1> 
           <h2 class="title">Sign up</h2>
           <div class="input-field">
@@ -59,7 +60,7 @@
             <input type="password" id="confirmPassword" name="confirmpassword" placeholder="Confirm your password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Password must be at least 8 characters and include at least one uppercase letter, one lowercase letter, and one digit." required>
             <i class="toggle-password fas fa-eye" onclick="togglePassword('confirmPassword')"></i>
         </div>
-        <input type="submit" class="btn" value="Sign up">
+        <button type="submit" class="btn" id="signup_submit" value="Sign up">SIGN UP <a href="/"></a></button>
         </form>
       </div>
     </div>
@@ -81,5 +82,5 @@
     </div>
   </div>
   <script src="/static/js/signup.js"></script>
-</body>
+  </body>
 </html>

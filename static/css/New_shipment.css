@@ -1,6 +1,6 @@
 body {
     font-family: boxicons!important;;
-    background-image: url('/static/sea-freight.jpg');
+    background-image: url('/static/img.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -130,7 +130,7 @@ box-sizing: border-box;
 .container {
 max-width: 940px;
 margin: 0 auto;
-background-color: #1c60db26;
+background-color: #595f6882;
 border-radius: 10px;
 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 overflow: hidden;
@@ -156,11 +156,3 @@ overflow: hidden;
 resize: none; 
 }
 
-form {
-    display: block;
-    margin-top: 0em;
-    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Shadow effect */
-    padding: 20px; /* Padding for spacing */
-}

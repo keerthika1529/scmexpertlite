@@ -6,7 +6,7 @@ body {
     justify-content: flex-start;
     height: 100vh;
     margin: 0;
-    background-image: url('/static/sea-freight.jpg');
+    background-image: url('/static/img.jpg');
     background-size: cover;
     background-position: center; 
 }

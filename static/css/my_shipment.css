@@ -52,15 +52,15 @@ margin-top: 20px;
 }
 
     th,td {
-        border: 1px solid #1e94d8;
+        border: 1px solid #3b074263;
         text-align: left;
         padding: 8px;
         font-size: 20px;
-        background-color: aliceblue;
+        background-color: #f1f0f0ed;
     }
 
     th {
-        background-color: #1f93d6;
+        background-color: #68138742;
         color: #fff;
     }
 
@@ -69,7 +69,7 @@ margin-top: 20px;
         text-align: center;
     }
     body {
-        background-image: url("/static/sea-freight.jpg"); 
+        background-image: url("/static/img.jpg"); 
         background-size: cover;
         background-repeat: no-repeat;
         background-attachment: fixed;
