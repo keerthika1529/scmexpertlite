@@ -18,6 +18,7 @@ from fastapi.security import OAuth2PasswordBearer
 from fastapi import Depends, HTTPException, status, Request, Cookie
 from datetime import datetime, timedelta
 import re
+
 load_dotenv()
 
 app = FastAPI()
@@ -29,6 +30,7 @@ mongodb_connection = MongoClient(mongo_uri)
 database = mongodb_connection["SCM"]
 collection=database["signup"]
 collection1=database["shipment"]
+Device_data=database["Device_data"]
  
 # #Initialize templates for HTML rendering
 templates = Jinja2Templates(directory="SCMXpert")
@@ -83,7 +85,14 @@ class Newshipment(BaseModel):
     Batch_id:str
     Serial_number_of_goods:str
     Shipment_Description:str
-
+    
+class devicedata(BaseModel):
+    Battery_Level:str
+    Device_ID:str
+    First_Sensor_Temperature:str
+    Route_From:str
+    Route_To:str
+    
 SECRET_KEY=os.getenv("SECRET_KEY")
 ALGORITHM=os.getenv("ALGORITHM")
 ACCESS_TOKEN_EXPIRE_SECONDS = os.getenv("ACCESS_TOKEN_EXPIRE_SECONDS")
@@ -96,7 +105,7 @@ def create_access_token(data: dict, expires_delta: timedelta | None = None):
     if expires_delta: 
         expire = datetime.utcnow() + expires_delta
     else:
-        expire = datetime.utcnow() + timedelta(minutes=int(ACCESS_TOKEN_EXPIRE_SECONDS))
+        expire = datetime.utcnow() + timedelta(seconds=int(ACCESS_TOKEN_EXPIRE_SECONDS))
     to_encode.update({"exp": expire})
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
@@ -130,25 +139,6 @@ def get_current_user(token: str = Depends(oauth2_scheme)):
 @app.get("/", response_class=HTMLResponse)
 def signup(request: Request):
     return templates.TemplateResponse("Signup.html", {"request": request})
-
-# @app.post("/signup", response_class=HTMLResponse)
-# def post_signup(request: Request, name: str = Form(...), email: str = Form(...), password: str = Form(...), confirmpassword: str = Form(...)):
-#     existing_user = collection.find_one({"Email": email})
-#     if existing_user:
-#         # return templates.TemplateResponse("signup.html", {"request": request, "message": "Email already exists please try to Login"})
-#         return JSONResponse(content={ "message": "Email already exists please try to Login"},status_code=400)
-
-#     hashed_password = hash_password(password)
-#     if len(password) < 8:
-#         return JSONResponse(content={ "message": "Passwords should be greater than 8 "},status_code=400)
-    
-#     if password != confirmpassword:
-#         return JSONResponse(content={ "message": "Passwords do not match"},status_code=400)
-#         # return templates.TemplateResponse("signup.html", {"request": request, "message": "Passwords do not match"})
-#         #  return JSONResponse(content={"message": "Password does not match"}, status_code=401)
-#     data = Signup(UserName=name, Email=email, Password=hashed_password, Confirm_Password=hashed_password)
-#     collection.insert_one(dict(data))
-#     return JSONResponse(content={ "message": "Register Successfully"},status_code=200)
 
 @app.post("/signup", response_class=HTMLResponse)
 def post_signup(request: Request, name: str = Form(None), email: str = Form(None), password: str = Form(None), confirmpassword: str = Form(None)):
@@ -263,7 +253,54 @@ def add_task(request: Request, shipment_number:str =Form(...), route_details: st
 async def dashboard(request: fastapi.Request):
     return templates.TemplateResponse("device_data.html", {"request": request})
 
+
 @app.get("/admin", response_class=HTMLResponse)
 def admin(request: Request):
     return templates.TemplateResponse("admin.html", {"request": request})
 
+# @app.get("/device_data", response_class=HTMLResponse)
+# async def device_data(request: Request, token: dict = Depends(get_current_user)):
+#     try:
+#         if token["Role"] == "admin":
+#             device_data = list(collection.find({}, {"_id": 0}))
+#         else:
+#             device_data = list(collection.find({"Email": token["Email"]}, {"_id": 0}))
+#         return JSONResponse(content=device_data, status_code=200)
+#     except Exception as e:
+#         return e
+    
+    
+# @app.get("/devicedata")
+# async def get_device_data():
+#     try:
+#         # Assuming your device data is stored in a collection named 'device_data'
+#         device_data = list(Device_data.find({}, {"_id": 0}))
+#         print(device_data)
+#         return JSONResponse(content=Device_data, status_code=200)
+#     except Exception as e:
+#         return JSONResponse(content={"error": str(e)}, status_code=500)
+
+
+
+
+ 
+# Route to get device data based on Device_ID
+@app.post("/device_data")
+async def get_device_data(request: Request, token: dict = Depends(get_current_user)):
+    try:
+        if token:
+            data1 = await request.json()
+            # print(type(data1))
+            device_id = data1.get("Device_ID")
+            # print(type(device_id))
+            if device_id:
+                # Assuming you want to filter data based on the received device_id {"Device_ID": device_id}
+                ship_data = list(Device_data.find({'Device_ID': int(device_id)}, {'_id': 0}))
+                if ship_data:
+                    return JSONResponse(content={"data": ship_data}, status_code=200)
+            return HTTPException(status_code=400, detail="Device Data Not Found")
+    except HTTPException as http_error:
+            return JSONResponse(content={"error_message": http_error.detail})
+    except Exception as e:
+        # Handle other exceptions with a 500 status code
+        return JSONResponse(content={"detail": str(e)}, status_code=500)

@@ -52,7 +52,7 @@ margin-top: 20px;
 }
 
     th,td {
-        border: 1px solid #3b074263;
+        border: 1px solid #181717;
         text-align: left;
         padding: 8px;
         font-size: 20px;
@@ -60,7 +60,7 @@ margin-top: 20px;
     }
 
     th {
-        background-color: #68138742;
+        background-color: #1817176b;
         color: #fff;
     }
 
@@ -86,7 +86,7 @@ margin-top: 20px;
     width: 15%; /* Adjust width as needed */
     box-sizing: border-box;
     font-size: 17px; /* Adjust font size as needed */
-    margin-left: 800px;
+    margin-left: 830px;
     margin-right: auto;
     display: block;
 }

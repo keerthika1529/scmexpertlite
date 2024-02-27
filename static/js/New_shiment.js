@@ -17,7 +17,7 @@ $(document).ready(function () {
         console.log(form.get('shipment_description'))
         const token = localStorage.getItem("token");
         fetch("/New_shipment", {
-            method: "POST",
+            method: "POST", 
             headers: {
                 "Authorization": `Bearer ${token}`,
             },

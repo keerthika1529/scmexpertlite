@@ -45,7 +45,7 @@ select {
 
 input[type="submit"],
 input[type="button"] {
-    background-color: #007bff;
+    background-color: #30a8e796;
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -130,7 +130,7 @@ box-sizing: border-box;
 .container {
 max-width: 940px;
 margin: 0 auto;
-background-color: #595f6882;
+background-color: #eaeff1eb;
 border-radius: 10px;
 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 overflow: hidden;
