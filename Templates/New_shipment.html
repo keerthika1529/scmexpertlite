@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <title>New_shiment</title>
+    <link rel="stylesheet" href="/static/css/New_shipment.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.js"
+        integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1 style="text-align:center;font-size:40px; letter-spacing: 3px; color: #fff; text-shadow: 1px 1px 2px #0f90cf, 0 0 25px #00a1ff, 0 0 5px #00abffe3;">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbspCreate a New Shipment</h1>
+    <div class="container">
+            <span id="error"></span>
+        <form>
+            <div class="left-col">
+                <label for="shipment_number">Shipment Number:</label>
+                <input type="text" id="shipment_number" name="shipment_number" placeholder="Shipment Number" required pattern="[0-9]{7}" maxlength="7">
+                <label for="route_details">Route Details:</label>
+                <select id="route_details" name="route_details" required>
+                    <option value="">Select Route</option>
+                    <option value="Chennai-India">Chennai-India</option>
+                    <option value="Bengaluru-India">Bengaluru-India</option>
+                    <option value="London-Uk">London-Uk</option>
+                    <option value="Newyork-USA">Newyork-USA</option>
+                    <option value="USA-Newyork">USA-Newyork</option>
+                </select>
+                <label for="device">Device:</label>
+                <select id="device" name="device" required>
+                    <option value="">Select Device</option>
+                    <option value="1152">1152 </option>
+                    <option value="1153">1153 </option>
+                    <option value="1155">1155 </option>
+                    <option value="1158">1158 </option>
+                    <option value="1157">1157 </option>
+                </select>
+                <label for="po_number">Po Number:</label>
+                <textarea id="po_number" name="po_number" placeholder="Po Number" required></textarea>
+                <label for="ndc_number">NDC Number:</label>
+                <input type="text" id="ndc_number" name="ndc_number" placeholder="NDC Number" required>
+                <label for="serial_number">Serial Number of Goods:</label>
+                <input type="text" id="serial_number" name="serial_number" placeholder="Serial Number of Goods"
+                    required>
+                <br>
+                <br>
+                <input type="submit" value="Create Shipment" id="enter">
+            </div>
+            <div class="right-col">
+                <label for="container_number">Container Number:</label>
+                <input type="text" id="container_number" name="container_number" placeholder="Container Number"
+                    required>
+
+                <label for="goods_type">Goods Type:</label>
+                <select id="goods_type" name="goods_type" required>
+                    <option value="">Select Goods Type</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Clothing and accessories">Clothing and accessorie</option>
+                    <option value="Appliances">Appliances</option>
+                    <option value="Home decor">Home Decor</option>
+                    <option value="Automobiles">Automobiles</option>
+                </select>
+                <label for="expected_delivery_date">Expected Delivery Date:</label>
+                <input type="date" id="expected_delivery_date" name="expected_delivery_date" required min="2024-02-29">
+                
+
+                <label for="delivery_number">Delivery Number:</label>
+                <input type="text" id="delivery_number" name="delivery_number" placeholder="Delivery Number" required>
+
+                <label for="batch_id">Batch ID:</label>
+                <input type="text" id="batch_id" name="batch_id" placeholder="Batch ID" required>
+
+                <label for="shipment_description">Shipment Description:</label>
+                <textarea id="shipment_description" name="shipment_description" placeholder="Shipment Description"
+                    required></textarea>
+
+                <div class="btn-container">
+                    <input type="button" class="clear" value="Clear Details" onclick="clearForm()">
+                </div>
+                <div id="error">
+                    <div class="alert alert-info" id="shipmentSuccess" style="display: none;"></div>
+                    <div class="alert alert-danger" id="shipmentError" style="display: none;"></div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- Drawer -->
+    <div class="drawer" id="myDrawer">
+        <div class="company-logo" style="margin-top:0px">
+            <img src="/static/images/exf_logo.png" alt="Company Logo" style="width: 230px;">
+        </div>
+        <div class="nav_list">
+            <a href="/Dashboard" class="nav_link">
+                <i class='bx bx-grid-alt nav_icon'></i>
+                <span class="nav_name">Dashboard</span>
+            </a>
+            <a href="/my_account" class="nav_link">
+                <i class='bx bx-user nav_icon'></i>
+                <span class="nav_name">My Account</span>
+            </a>
+            <a href="/my_shipment" class="nav_link">
+                <i class='bx bxs-book-content'></i>
+                <span class="nav_name">My Shipment</span>
+            </a>
+            <a href="/New_shipment" class="nav_link">
+                <i class='bx bxs-truck'></i>
+                <span class="nav_name">New Shipment</span>
+            </a>
+            <a href="/device_data" class="nav_link deviceData">
+                <i class='bx bx-hdd'></i>
+                <span class="nav_name">Device Data</span>
+            </a>
+        </div>
+        <a href="/" class="nav_link logout"  onclick="logout()">
+            <i class='bx bx-log-out nav_icon'></i>
+            <span class="nav_name">Sign Out</span>
+        </a>
+    </div>
+    <script src="/static/js/New_shiment.js"></script>
+</body>
+</html>

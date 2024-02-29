@@ -50,7 +50,6 @@ while connected:
             # clientdata = conn.recv(1024).decode(FORMAT)
             # print("ACKNOWLEDGEMENT RECEIVED FROM CLIENT : " +clientdata)
                        
-
         except IOError as e:
             if e.errno == errno.EPIPE:
                 pass

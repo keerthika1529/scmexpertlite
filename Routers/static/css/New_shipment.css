@@ -1,0 +1,149 @@
+body {
+    font-family: boxicons!important;;
+    background-image: url('/static/images/img.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 100px;
+    overflow: hidden;
+}
+
+.left-col, .right-col {
+    float: left;
+    width: 50%;
+    padding: 25px;
+    box-sizing: border-box;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="date"],
+textarea,
+select {
+    width: calc(100% - 22px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+}
+
+input[type="submit"],
+input[type="button"] {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 45%;
+ margin-top: 20px;
+}
+
+input[type="submit"]:hover,
+input[type="button"]:hover {
+    background-color: #0056b3;
+}
+
+input[type="button"].clear {
+    background-color: #ff0000;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 52px;
+}
+.btn-container {
+display: flex;
+justify-content: space-between;
+align-items: flex-start;
+margin-top: 20px;
+}
+
+.btn-container input[type="button"].clear {
+margin: 15px 0 0;
+}
+
+/* Drawer styles */
+.drawer {
+position: fixed;
+top: 0;
+left: 0;
+width: 258px;
+height: 100%;
+background-color: #fff;
+padding-top: 60px;
+box-sizing: border-box;
+z-index: 999;
+overflow-y: auto;
+transition: 0.5s;
+}
+
+.nav_list {
+padding-top: -11px; 
+text-align: left; 
+}
+
+.nav_link {
+display: block;
+padding: 15px 20px;
+text-decoration: none;
+font-size: 22px;
+color: #0f90cf;
+transition: 0.3s;
+text-align: left; 
+}
+
+.nav_icon {
+margin-right: 10px;
+}
+
+.nav_link:hover {
+background-color: #555;
+color: #fff;
+}
+.left-col,
+.right-col {
+float: left;
+width: 50%; 
+padding: 25px;
+box-sizing: border-box;
+}
+
+.container {
+max-width: 940px;
+margin: 0 auto;
+background-color: #fff;
+border-radius: 10px;
+box-shadow: 0 0 10px #2b95c9;
+overflow: hidden;
+padding: 20px;
+display: flex;
+margin-right: 250px;
+border: 2px solid #0f90cf;
+}
+
+.container .left-col,
+.container .right-col {
+padding: 25px 20px; 
+}
+
+.container input,
+.container select,
+.container textarea {
+width: 100%; 
+}
+
+textarea {
+height: 50px;
+overflow: hidden;
+resize: none; 
+}
+
