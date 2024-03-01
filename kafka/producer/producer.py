@@ -26,7 +26,6 @@ while True:
         print("Connection reset by peer.")
         break
  
- 
 # Wait for any outstanding messages to be delivered and delivery reports received
 producer.flush()
  

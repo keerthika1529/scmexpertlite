@@ -1,11 +1,8 @@
 import os
 from dotenv import load_dotenv
-from fastapi import APIRouter, Depends, FastAPI, Form, Request
-import fastapi
+from fastapi import APIRouter, Depends, Form, Request
 from fastapi.responses import HTMLResponse, JSONResponse
-from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from jinja2 import Template
 from Models.model import Newshipment
 from Routers.user import get_current_user
 from pymongo import MongoClient
@@ -13,16 +10,13 @@ from pymongo import MongoClient
 load_dotenv()
 
 shipments=APIRouter()
-# shipments.mount("/static", StaticFiles(directory=os.path.join(os.path.dirname(__file__), "static")), name="static")
-# shipments.mount("/static", StaticFiles(directory="static"), name="static")
-
-# shipments.mount("/static", StaticFiles(directory="static"), name="static")
-mongo_uri = "mongodb+srv://keerthika:keerthika@cluster0.68jkqi1.mongodb.net/"
+mongo_uri =  os.getenv("mongo_uri")
 mongodb_connection = MongoClient(mongo_uri)
 
 database = mongodb_connection["SCM"]
 collection=database["signup"]
 collection1=database["shipment"]
+
 Device_data=database["Device_data"]
  
 # #Initialize templates for HTML rendering
@@ -35,13 +29,11 @@ def my_shipment(request:Request):
 
 @shipments.get("/myshipment", response_class=HTMLResponse)
 async def my_shipment(request:Request,token: dict = Depends(get_current_user)):
-    # print(token,"ship")
     try:
         if token["Role"]=="admin":
             shipment = list(collection1.find({},{"_id":0}))
         else:
             shipment = list(collection1.find({"Email":token["Email"]},{"_id":0}))
-        # print(shipment)
         return JSONResponse(content=shipment,status_code=200)
     except Exception as e:
         return e

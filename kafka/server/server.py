@@ -14,7 +14,7 @@ SERVER = socket.gethostbyname(socket.gethostname())
 print(SERVER)
 ADDR = ("", PORT)
 FORMAT = 'utf-8'
-DISCONNECT_MESSAGE = "!DISCONNECT"
+# DISCONNECT_MESSAGE = "!DISCONNECT"
 
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

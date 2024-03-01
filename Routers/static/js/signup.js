@@ -61,44 +61,21 @@ async function handleLogin(event) {
     }
 }
 
-document.querySelector(".sign-in-form").addEventListener("submit", handleLogin);
-window.addEventListener('DOMContentLoaded', (event) => {
-    const message = document.getElementById('message');
-    if (message) {
-        setTimeout(() => {
-            message.style.display = 'none';
-        }, 5000);
-    }
-    const sign_in_btn = document.querySelector("#sign-in-btn");
-});
+// document.querySelector(".sign-in-form").addEventListener("submit", handleLogin);
+// window.addEventListener('DOMContentLoaded', (event) => {
+//     const message = document.getElementById('message');
+//     if (message) {
+//         setTimeout(() => {
+//             message.style.display = 'none';
+//         }, 5000);
+//     }
+//     const sign_in_btn = document.querySelector("#sign-in-btn");
+// });
 
 function togglePassword(inputId) {
     var element = document.getElementById(inputId);
     element.type === "password" ? element.type = "text" : element.type = "password";
 }
-
-// function validatePassword() {
-//     var password = document.getElementById("password").value;
-//     var confirmPassword = document.getElementById("confirmPassword").value;
-//     if (password != confirmPassword) {
-//         document.getElementById("message").innerHTML = "Passwords do not match";
-//         setTimeout(function () {
-//             document.getElementById("message").innerHTML = "";
-//         }, 7000);
-//         return false;
-//     }
-//     return true;
-// }
-
-// function validateForm() {
-//     let email = document.getElementById("email").value;
-//     let exists = checkEmailExists(email);
-//     if (exists) {
-//         document.getElementById("emailExistsMessage").style.display = "block";
-//         return false;
-//     }
-//     return true;
-// }
 
 $(document).ready(function () {
     $("#signup_submit").on("click", function (event) {
