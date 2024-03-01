@@ -42,7 +42,7 @@ $(document).ready(function () {
         }
 
         $("#data").html(shipment1);
-
+        
         // Search functionality
         $("#search").on("keyup", function () {
             var searchText = $(this).val().toLowerCase();

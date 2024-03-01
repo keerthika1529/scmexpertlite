@@ -22,10 +22,13 @@ Device_data=database["Device_data"]
 # #Initialize templates for HTML rendering
 templates = Jinja2Templates(directory="Templates")
 
-@shipments.get("/my_shipment")
-def my_shipment(request:Request):
-    return templates.TemplateResponse("my_shipment.html", {"request": request})
 
+@shipments.get("/my_shipment")
+def my_shipment(request: Request):
+    try:
+        return templates.TemplateResponse("my_shipment.html", {"request": request})
+    except Exception as e:
+        return e
 
 @shipments.get("/myshipment", response_class=HTMLResponse)
 async def my_shipment(request:Request,token: dict = Depends(get_current_user)):
@@ -41,7 +44,10 @@ async def my_shipment(request:Request,token: dict = Depends(get_current_user)):
 
 @shipments.get("/New_shipment", response_class=HTMLResponse)
 async def newShipment(request: Request):
-    return templates.TemplateResponse("New_shipment.html", {"request": request})
+    try:
+        return templates.TemplateResponse("New_shipment.html", {"request": request})
+    except Exception as e:
+        return e 
 
 
 @shipments.post("/New_shipment")

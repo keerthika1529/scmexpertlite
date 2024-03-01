@@ -51,7 +51,7 @@ function logout() {
                         }
                         $("#device_data").html(ship_data);
                     } else {
-                        throw new Error("Invalid data format");
+                        alert("only admin can access device data");
                         // $("#error").text("Invalid data format");
                     }
                 })

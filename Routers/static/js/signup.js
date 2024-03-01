@@ -30,9 +30,9 @@ document.getElementById('refreshButton').addEventListener('click', function () {
     generateCaptcha();
 });
 
-async function handleLogin(event) {
+    document.getElementById("login_submit").addEventListener("click",(event) => {
     event.preventDefault();
-    const user = document.getElementById("captcha").textContent;;
+    const user = document.getElementById("captcha").textContent;
     const used = document.getElementById("textBox").value;
     if (user !== used) {
         alert("incorrect captcha");
@@ -45,6 +45,7 @@ async function handleLogin(event) {
     form.append("email", email);
     form.append("password", password);
     form.append("captcha", captcha);
+    async function handleLogin() {
     const response = await fetch("/login", {
         method: "POST",
         body: form
@@ -60,6 +61,10 @@ async function handleLogin(event) {
         alert("Invalid email or password!");
     }
 }
+handleLogin();
+})
+
+
 
 // document.querySelector(".sign-in-form").addEventListener("submit", handleLogin);
 // window.addEventListener('DOMContentLoaded', (event) => {
