@@ -64,19 +64,6 @@ document.getElementById('refreshButton').addEventListener('click', function () {
 handleLogin();
 })
 
-
-
-// document.querySelector(".sign-in-form").addEventListener("submit", handleLogin);
-// window.addEventListener('DOMContentLoaded', (event) => {
-//     const message = document.getElementById('message');
-//     if (message) {
-//         setTimeout(() => {
-//             message.style.display = 'none';
-//         }, 5000);
-//     }
-//     const sign_in_btn = document.querySelector("#sign-in-btn");
-// });
-
 function togglePassword(inputId) {
     var element = document.getElementById(inputId);
     element.type === "password" ? element.type = "text" : element.type = "password";
