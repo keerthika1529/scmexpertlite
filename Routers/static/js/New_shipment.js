@@ -64,3 +64,9 @@ function logout() {
     sessionStorage.clear()
     window.location.href= "/";
     }
+
+   // Get the current date in the format "yyyy-mm-dd"
+    let currentDate = new Date().toISOString().split('T')[0];
+
+    // Set the max attribute of the input field to the current date
+    document.getElementById('expected_delivery_date').max = currentDate;

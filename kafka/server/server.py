@@ -16,7 +16,6 @@ ADDR = ("", PORT)
 FORMAT = 'utf-8'
 # DISCONNECT_MESSAGE = "!DISCONNECT"
 
-
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 print("socket created")
 
@@ -35,7 +34,7 @@ while connected:
                 if (routefrom!=routeto):
                     data = {
                         "Battery_Level":round(random.uniform(2.00,5.00),2),
-                        "Device_ID": random.randint(1150,1158),
+                        "Device_ID": random.randint(1156053070,1156053080),
                         "First_Sensor_temperature":round(random.uniform(10,40.0),1),
                         "Route_From":routefrom,
                         "Route_To":routeto

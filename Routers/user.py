@@ -46,7 +46,7 @@ def get_user(email: str):
         else:
             return Existing_mail
     except Exception as e:
-        pass
+        return e
 
 # Function to authenticate a user based on username (email) and password
 def authenticate_user(email: str, password: str):
@@ -58,7 +58,7 @@ def authenticate_user(email: str, password: str):
             return False
         return user
     except Exception as e:
-        pass 
+       return e
 
 SECRET_KEY=os.getenv("SECRET_KEY")
 ALGORITHM=os.getenv("ALGORITHM")
@@ -78,7 +78,7 @@ def create_access_token(data: dict, expires_delta: timedelta | None = None):
         encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
         return encoded_jwt
     except Exception as e:
-        pass 
+        return e 
 
 def decode_token(token: str):
     try:
@@ -102,8 +102,7 @@ def get_current_user(token: str = Depends(oauth2_scheme)):
             if user_data :
                 return user_data
     except JWTError:
-        pass
-    return None
+        return None
 
 
 @user.get("/", response_class=HTMLResponse)
@@ -111,7 +110,7 @@ def signup(request: Request):
     try:
         return templates.TemplateResponse("Signup.html", {"request": request})
     except Exception as e:
-        pass
+        return e
 
 
 @user.post("/signup", response_class=HTMLResponse)
@@ -152,7 +151,7 @@ def verify_user(request: Request, email: str = Form(...), password: str = Form(.
             access_token = create_access_token(data={"sub": user["UserName"], "email": user["Email"],"role":user["Role"]})
             return JSONResponse(content={"token":access_token,"user":user["UserName"],"email": user["Email"],"role":user["Role"]},status_code=200)
     except Exception as e:
-        pass  
+        return e  
 
 
 @user.get("/Dashboard", response_class=HTMLResponse)
@@ -160,7 +159,7 @@ async def dashboard(request: fastapi.Request):
     try:
         return templates.TemplateResponse("Dashboard.html", {"request": request})
     except Exception as e:
-        pass  
+        return e  
 
 
 @user.get("/my_account", response_class=HTMLResponse)

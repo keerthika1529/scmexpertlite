@@ -25,7 +25,6 @@ consumer.subscribe([os.getenv("topic")])
 try:
     while True:
         msg = consumer.poll(1.0)
- 
         if msg is None:
             continue
         if msg.error():
@@ -36,7 +35,6 @@ try:
                 break
         # Decode the message value from bytes to a UTF-8 string
         json_str = msg.value().decode('utf-8')
- 
         try:
             document = json.loads(json_str)
              # Insert the document into the MongoDB collection
@@ -49,7 +47,6 @@ try:
  
         # Commit the offset
         consumer.commit()
- 
 except KeyboardInterrupt:
     print("Interrupted. Closing consumer.")
 finally:

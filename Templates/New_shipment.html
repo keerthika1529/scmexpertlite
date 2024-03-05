@@ -30,19 +30,23 @@
                 <label for="device">Device:</label>
                 <select id="device" name="device" required>
                     <option value="">Select Device</option>
-                    <option value="1152">1152 </option>
-                    <option value="1153">1153 </option>
-                    <option value="1155">1155 </option>
-                    <option value="1158">1158 </option>
-                    <option value="1157">1157 </option>
+                    <option value="1156053070">1156053070 </option>
+                    <option value="1156053071">1156053071 </option>
+                    <option value="1156053072">1156053072 </option>
+                    <option value="1156053073">1156053073 </option>
+                    <option value="1156053074">1156053074 </option>
+                    <option value="1156053075">1156053075 </option>
+                    <option value="1156053076">1156053076 </option>
+                    <option value="1156053077">1156053077 </option>
+                    <option value="1156053078">1156053078</option>
                 </select>
                 <label for="po_number">Po Number:</label>
-                <textarea id="po_number" name="po_number" placeholder="Po Number" required></textarea>
+                <textarea id="po_number" name="po_number" placeholder="Po Number" required maxlength="10"></textarea>
                 <label for="ndc_number">NDC Number:</label>
-                <input type="text" id="ndc_number" name="ndc_number" placeholder="NDC Number" required>
+                <input type="text" id="ndc_number" name="ndc_number" placeholder="NDC Number" required maxlength="7">
                 <label for="serial_number">Serial Number of Goods:</label>
                 <input type="text" id="serial_number" name="serial_number" placeholder="Serial Number of Goods"
-                    required>
+                    required maxlength="7">
                 <br>
                 <br>
                 <input type="submit" value="Create Shipment" id="enter">
@@ -50,7 +54,7 @@
             <div class="right-col">
                 <label for="container_number">Container Number:</label>
                 <input type="text" id="container_number" name="container_number" placeholder="Container Number"
-                    required>
+                    required maxlength="7">
 
                 <label for="goods_type">Goods Type:</label>
                 <select id="goods_type" name="goods_type" required>
@@ -62,18 +66,18 @@
                     <option value="Automobiles">Automobiles</option>
                 </select>
                 <label for="expected_delivery_date">Expected Delivery Date:</label>
-                <input type="date" id="expected_delivery_date" name="expected_delivery_date" required min="2024-02-29">
+                <input type="date" id="expected_delivery_date" name="expected_delivery_date" required min="2024-03-05">
                 
 
                 <label for="delivery_number">Delivery Number:</label>
-                <input type="text" id="delivery_number" name="delivery_number" placeholder="Delivery Number" required>
+                <input type="text" id="delivery_number" name="delivery_number" placeholder="Delivery Number" required maxlength="7">
 
                 <label for="batch_id">Batch ID:</label>
-                <input type="text" id="batch_id" name="batch_id" placeholder="Batch ID" required>
+                <input type="text" id="batch_id" name="batch_id" placeholder="Batch ID" required maxlength="7">
 
                 <label for="shipment_description">Shipment Description:</label>
                 <textarea id="shipment_description" name="shipment_description" placeholder="Shipment Description"
-                    required></textarea>
+                    required ></textarea>
 
                 <div class="btn-container">
                     <input type="button" class="clear" value="Clear Details" onclick="clearForm()">

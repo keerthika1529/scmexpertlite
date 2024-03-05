@@ -40,8 +40,8 @@ async def get_device_data(request: Request, token: dict = Depends(get_current_us
                         return JSONResponse(content={"data": device_data}, status_code=200)
                 return HTTPException(status_code=400, detail="Device Data Not Found")
             else:
-                 return JSONResponse(content={"": "not autenticated"})
+                 return JSONResponse(content={"message": "not autenticated"})
     except HTTPException as http_error:
-            return JSONResponse(content={"error_message": http_error.detail})
+            return JSONResponse(content={"message": http_error.detail})
     except Exception as e:
         return JSONResponse(content={"detail": str(e)}, status_code=500)
