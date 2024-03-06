@@ -30,13 +30,21 @@ $(document).ready(function () {
             }
         }).then(data => {
             // Display the success message
-            alert(data.msg);
+            // alert(data.msg);
+            // throw new error (data.msg);
+            $("#error").text(data.msg);
             // Clear form fields after successful submission
             clearForm();
+            setTimeout(function() {
+                $("#error").text('');
+            }, 3000); 
+
         }).catch(error => {
             // Display the error message
-            console.error('Error:', error);
-            alert('Failed to create shipment');
+            console.error('Error:', error.msg);
+            // alert('Failed to create shipment');
+            $("#error").text(error.message);
+
         });
     })
 })
@@ -65,8 +73,6 @@ function logout() {
     window.location.href= "/";
     }
 
-   // Get the current date in the format "yyyy-mm-dd"
-    let currentDate = new Date().toISOString().split('T')[0];
 
-    // Set the max attribute of the input field to the current date
-    document.getElementById('expected_delivery_date').max = currentDate;
+    
+    

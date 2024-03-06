@@ -10,10 +10,10 @@
         integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc=" crossorigin="anonymous"></script>
 </head>
 <body>
-    <h1 style="text-align:center;font-size:40px; letter-spacing: 3px; color: #fff; text-shadow: 1px 1px 2px #0f90cf, 0 0 25px #00a1ff, 0 0 5px #00abffe3;">
+    <h1 style="text-align:center;font-size:40px; letter-spacing: 3px; color: #fff; text-shadow: 1px 1px 2px #0f90cf, 0 0 25px #00a1ff, 0 0 5px #00abffe3; margin-top: -50px">
+        <span id="error" style="text-shadow: none;"></span><br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbspCreate a New Shipment</h1>
     <div class="container">
-            <span id="error"></span>
         <form>
             <div class="left-col">
                 <label for="shipment_number">Shipment Number:</label>
@@ -66,9 +66,8 @@
                     <option value="Automobiles">Automobiles</option>
                 </select>
                 <label for="expected_delivery_date">Expected Delivery Date:</label>
-                <input type="date" id="expected_delivery_date" name="expected_delivery_date" required min="2024-03-05">
+                <input type="date" id="expected_delivery_date" name="expected_delivery_date" required min="2024-03-06">
                 
-
                 <label for="delivery_number">Delivery Number:</label>
                 <input type="text" id="delivery_number" name="delivery_number" placeholder="Delivery Number" required maxlength="7">
 

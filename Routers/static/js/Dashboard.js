@@ -7,7 +7,7 @@ function showSlide(index) {
         slide.classList.remove("active");
     });+
     slides[index].classList.add("active");
-    var texts = ["Hi Buddy!", "Welcome To SCMXPerLite", "Hi buddy!Welcome to SCMXPerLite"];
+    var texts = ["Hi Buddy!", "Welcome To SCMXPertLite", "Hi buddy!Welcome to SCMXPertLite"];
     welcomeText.textContent = texts[index];
 }
 function nextSlide() {

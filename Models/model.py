@@ -19,7 +19,6 @@ class Newshipment(BaseModel):
     Po_number:str
     Delivery_number:str
     Ndc_Number:str
-    
     Batch_id:str
     Serial_number_of_goods:str
     Shipment_Description:str

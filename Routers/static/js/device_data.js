@@ -1,7 +1,6 @@
 if (localStorage.getItem("token") === null) {
     window.location.href = "/";
 }
-
 function logout() {
     localStorage.removeItem("token");
     sessionStorage.clear()
@@ -49,8 +48,8 @@ function logout() {
                         }
                         $("#device_data").html(ship_data);
                     } else {
-                        alert("only admin can access device data");
-                        // $("#error").text("Invalid data format");
+                        // alert("only admin can access device data");
+                        $("#error").text("only admin can access device data");
                     }
                 })
                 .catch(error => {
