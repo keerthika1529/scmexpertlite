@@ -32,4 +32,14 @@ if (localStorage.getItem("token") === null) {
 window.location.href = "/";
 }
 
+$(document).ready(function(){
 
+    if (sessionStorage.getItem("role")==="admin"){
+
+        $("#device").css("display","flex");
+
+        $("#device").css("display","flex");
+
+    }
+
+});

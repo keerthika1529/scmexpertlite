@@ -147,7 +147,7 @@ overflow: hidden;
 resize: none; 
 }
 #error{
-    color:red;
+    color:green;
     font-size:20px;
     margin-right: -205px;
 }

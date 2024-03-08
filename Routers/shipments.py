@@ -36,7 +36,6 @@ async def my_shipment(request:Request,token: dict = Depends(get_current_user)):
             shipment = list(collection1.find({},{"_id":0}))
         else:
             shipment = list(collection1.find({"Email":token["Email"]},{"_id":0}))
-        # print(shipment)
         return JSONResponse(content=shipment,status_code=200)
     except Exception as e:
         return e

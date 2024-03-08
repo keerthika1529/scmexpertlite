@@ -27,17 +27,18 @@ body {
 }
 .container {
     width: 400px;
-    padding: 20px;
-    border: 29px solid #0f90cf;
+    padding: 50px;
+    border: 29px solid #0f90cfa8;
     border-radius: 10px;
-    background-color: #ededed;
+    background-color:#fff;
     box-shadow:  0 0 10px #2b95c9;
-    margin-top: 180px; 
+    margin-top: 90px; 
 }
 
 .user-info-container {
     text-align: center;
     padding: 20px;
+    font-size: 25px
 }
 
 .user-info-container div {
@@ -85,3 +86,7 @@ body {
     background-color: #555;
     color: #fff;
 }
+
+.name {
+    font-size: 50px; /* You can adjust the font size as needed */
+  }

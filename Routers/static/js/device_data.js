@@ -62,3 +62,16 @@ function logout() {
                 });
         });
     });
+
+    $(document).ready(function(){
+
+        if (sessionStorage.getItem("role")==="admin"){
+    
+            $("#device").css("display","flex");
+    
+            $("#device").css("display","flex");
+    
+        }
+    
+    });
+    

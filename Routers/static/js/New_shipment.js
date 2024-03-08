@@ -1,3 +1,15 @@
+$(document).ready(function(){
+
+    if (sessionStorage.getItem("role")==="admin"){
+
+        $("#device1").css("display","flex");
+
+        $("#device1").css("display","flex");
+
+    }
+
+});
+
 $(document).ready(function () {
     document.getElementById("enter").addEventListener("click", function (event) {
         event.preventDefault();
@@ -72,6 +84,7 @@ function logout() {
     sessionStorage.clear()
     window.location.href= "/";
     }
+ 
 
 
     
