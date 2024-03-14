@@ -41,9 +41,6 @@ $(document).ready(function () {
                 throw new Error('Failed to create shipment');
             }
         }).then(data => {
-            // Display the success message
-            // alert(data.msg);
-            // throw new error (data.msg);
             $("#error").text(data.msg);
             // Clear form fields after successful submission
             clearForm();

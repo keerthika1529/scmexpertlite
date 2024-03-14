@@ -1,0 +1,50 @@
+version: '3'
+ 
+services:
+
+    scm:
+     image: keerthika15/scm:latest
+     ports:
+       - "8000:8000"
+ 
+    zookeeper:
+      image: 'bitnami/zookeeper:latest'
+      ports:
+       - "2181:2181"
+      depends_on:
+        - scm
+      environment:
+        - ALLOW_ANONYMOUS_LOGIN=yes
+ 
+    kafka:
+      image: 'bitnami/kafka:latest'
+      ports:
+       - "9092:9092"
+      depends_on:
+       - zookeeper
+      environment:
+       - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+       - ALLOW_PLAINTEXT_LISTENER=yes
+       - KAFKA_HEAP_OPTS=-Xmx1G
+ 
+    server:
+     image: keerthika15/server:latest
+     ports:
+       - "12345:12345"
+     depends_on:
+       - kafka
+ 
+    producer:
+     image: keerthika15/producer:latest
+     environment:
+       - bootstrap_servers=kafka:9092
+       - host=server
+     depends_on:
+       - server
+ 
+    consumer:
+     image: keerthika15/consumer:latest
+     environment:
+       - bootstrap_servers=kafka:9092
+     depends_on:
+       - producer

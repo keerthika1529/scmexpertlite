@@ -15,8 +15,6 @@ mongo_uri =  os.getenv("mongo_uri")
 mongodb_connection = MongoClient(mongo_uri)
 
 database = mongodb_connection["SCM"]
-collection=database["signup"]
-collection1=database["shipment"]
 Device_data=database["Device_data"]
  
 # #Initialize templates for HTML rendering

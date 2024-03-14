@@ -43,8 +43,6 @@ try:
             print(f"Error decoding JSON: {e}")
         except Exception as ex:
             print(f"Error: {ex}")
-
- 
         # Commit the offset
         consumer.commit()
 except KeyboardInterrupt:

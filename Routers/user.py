@@ -24,9 +24,7 @@ mongo_uri = os.getenv("mongo_uri")
 mongodb_connection = MongoClient(mongo_uri)
 
 database = mongodb_connection["SCM"]
-collection=database["signup"]
-collection1=database["shipment"]
-Device_data=database["Device_data"]
+users_data=database["signup"]
  
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
  
@@ -40,7 +38,7 @@ def verify_password(password: str, hashed_password: str):
 # Function to get user details based on email from the MongoDB collection
 def get_user(email: str):
     try:
-        Existing_mail = collection.find_one({'Email': email})
+        Existing_mail = users_data.find_one({'Email': email})
         if not Existing_mail:
             return False
         else:
@@ -98,7 +96,7 @@ def get_current_user(token: str = Depends(oauth2_scheme)):
     try:
         payload = decode_token(token)
         if payload and "sub" in payload and "email" in payload:
-            user_data = collection.find_one({"Email": payload["email"]})
+            user_data = users_data.find_one({"Email": payload["email"]})
             if user_data :
                 return user_data
     except JWTError:
@@ -128,14 +126,14 @@ def post_signup(request: Request, name: str = Form(None), email: str = Form(None
             return JSONResponse(content={ "message": "Password should be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit"},status_code=400)
         if not confirmpassword:
             return JSONResponse(content={ "message": "Confirm Password is required"},status_code=400)
-        existing_user = collection.find_one({"Email": email})
+        existing_user = users_data.find_one({"Email": email})
         if existing_user:
             return JSONResponse(content={ "message": "Email already exists please try to Login"},status_code=400)
         if password != confirmpassword:
             return JSONResponse(content={ "message": "Passwords do not match"},status_code=400)
         hashed_password = hash_password(password)
         data = Signup(UserName=name, Email=email, Password=hashed_password, Confirm_Password=hashed_password)
-        collection.insert_one(dict(data))
+        users_data.insert_one(dict(data))
         return JSONResponse(content={ "message": "Register Successfully"},status_code=200)
     except Exception as e:
         return JSONResponse(content={ "message": str(e)},status_code=500)

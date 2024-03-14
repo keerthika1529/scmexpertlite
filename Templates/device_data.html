@@ -8,6 +8,12 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   
     <title>Device Data</title>
+    <style>
+        .table-container {
+            overflow-y: auto;
+            max-height: 300px;
+        }
+    </style>
 </head>
 <body>
 <div class="drawer" id="myDrawer">
@@ -41,17 +47,17 @@
         </a>
     </div>
 </div>
-<h1 style="letter-spacing: 3px; color: #fff;text-shadow: 1px 1px 2px #0f90cf, 0 0 25px #00a1ff, 0 0 5px #00abffe3;; margin-top: -450px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Device Data</h1>
+<h1 style="letter-spacing: 3px; color: #fff;text-shadow: 1px 1px 2px #0f90cf, 0 0 25px #00a1ff, 0 0 5px #00abffe3;; margin-top: -450px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><br><br><br>Device Data</h1>
 <div class="container">
     <div class="device-data-box">
         <span id="error"> </span>
         <h2>Device Data Stream</h2>
-        <div class="device-data-stream" style="overflow-y: auto; max-height: 300px;">
+        <div class="device-data-stream">
             <select id="device_id" required>
                 <option>DEVICE ID</option>
                 <option value="1156053070">1156053070</option>
                 <option value="1156053071">1156053071</option>
-                <option value="1156053072">1156053071</option>
+                <option value="1156053072">1156053072</option>
                 <option value="1156053073">1156053073</option>
                 <option value="1156053074">1156053074</option>
                 <option value="1156053075">1156053075</option>
@@ -76,7 +82,6 @@
                 </tr>
             </thead>
             <tbody id="device_data">
-                <!-- Device data rows will be inserted here dynamically -->
             </tbody>
         </table>
     </div>

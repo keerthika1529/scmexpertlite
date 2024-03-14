@@ -75,3 +75,8 @@ function logout() {
     
     });
     
+
+    if (sessionStorage.getItem("role")!=="admin"){
+        alert("only admin can access the device data")
+        window.location.href= "/Dashboard";
+    }
