@@ -124,7 +124,7 @@ background-color: #fff;
 border-radius: 10px;
 box-shadow: 0 0 10px #2b95c9;
 overflow: hidden;
-padding: 20px;
+padding: 40px;
 display: flex;
 margin-right: 250px;
 border: 20px solid #0f90cf;
@@ -147,8 +147,9 @@ overflow: hidden;
 resize: none; 
 }
 #error{
-    color:green;
-    font-size:20px;
-    margin-right: -205px;
+    color: green;
+    font-size: 28px;
+    margin-right: -181px;
+    margin-left: 321px;
 }
 

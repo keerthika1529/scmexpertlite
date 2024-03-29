@@ -10,11 +10,11 @@
         integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc=" crossorigin="anonymous"></script>
 </head>
 <body>
-    <h1 style="text-align:center;font-size:40px; letter-spacing: 3px; color: #fff; text-shadow: 1px 1px 2px #0f90cf, 0 0 25px #00a1ff, 0 0 5px #00abffe3; margin-top: -50px">
-        <span id="error" style="text-shadow: none;"></span><br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbspCreate a New Shipment</h1>
+    <h1 style="text-align:center;font-size:40px; letter-spacing: 3px; color: #fff; text-shadow: 1px 1px 2px #0f90cf, 0 0 25px #00a1ff, 0 0 5px #00abffe3; margin-right: 80px ; margin-top: -50px">
+        <!-- <span id="error" style="text-shadow: none;"></span><br> -->
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create a New Shipment</h1>
     <div class="container">
-        <form>
+        <form>    <span  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp id="error" style="text-shadow: none;"></span><br>
             <div class="left-col">
                 <label for="shipment_number">Shipment Number:</label>
                 <input type="text" id="shipment_number" name="shipment_number" placeholder="Shipment Number" required pattern="[0-9]{7}" maxlength="7">
@@ -38,7 +38,7 @@
                     <option value="1156053075">1156053075 </option>
                     <option value="1156053076">1156053076 </option>
                     <option value="1156053077">1156053077 </option>
-                    <option value="1156053078">1156053078</option>
+                    <option value="1156053078">1156053078 </option>
                 </select>
                 <label for="po_number">Po Number:</label>
                 <textarea id="po_number" name="po_number" placeholder="Po Number" required maxlength="10"></textarea>

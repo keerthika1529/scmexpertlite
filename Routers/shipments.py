@@ -27,37 +27,39 @@ def my_shipment(request:Request):
         return e 
 
 @shipments.get("/myshipment", response_class=HTMLResponse)
-async def my_shipment(request:Request,token: dict = Depends(get_current_user)):
-    # print(token,"ship")
+def my_shipment(request:Request,token: dict = Depends(get_current_user)):
     try:
-        if token["Role"]=="admin":
-            shipment = list(Shipment_data.find({},{"_id":0}))
-        else:
-            shipment = list(Shipment_data.find({"Email":token["Email"]},{"_id":0}))
-        return JSONResponse(content=shipment,status_code=200)
+        if token:
+            
+            if token["Role"]=="admin":
+                shipment = list(Shipment_data.find({},{"_id":0}))
+            else:
+                shipment = list(Shipment_data.find({"Email":token["Email"]},{"_id":0}))
+            return JSONResponse(content=shipment,status_code=200)
     except Exception as e:
         return e
 
 @shipments.get("/New_shipment", response_class=HTMLResponse)
-async def newShipment(request: Request):
+def newShipment(request: Request,):
     try:
         return templates.TemplateResponse("New_shipment.html", {"request": request})
     except Exception as e:
-        return e  
+        return e 
 
 @shipments.post("/New_shipment")
 def add_task(request: Request, shipment_number:str =Form(...), route_details: str =Form(...), device: str = Form(...), po_number: str = Form(...),
              ndc_number: str = Form(...), serial_number: str = Form(...),container_number: str = Form(...),goods_type: str = Form(...),
              expected_delivery_date: str = Form(...),delivery_number: str = Form(...),
-             batch_id: str = Form(...),shipment_description: str = Form(...), user : dict =Depends(get_current_user)):
+             batch_id: str = Form(...),shipment_description: str = Form(...), token : dict =Depends(get_current_user)):
     try:
-        # Check if the shipment number already exists
-        if Shipment_data.find_one({"Shipment_Number": shipment_number}):
-            return JSONResponse(content={"msg": "Shipment number already exists", "status_code": 400})
-        data = Newshipment(Email=user["Email"],Shipment_Number=shipment_number, container_number=container_number, Route_details=route_details, Goods_types=goods_type, Device=device,
-                            Expected_Delivery_date=expected_delivery_date,Po_number=po_number,Delivery_number=delivery_number,Ndc_Number= ndc_number,
-                            Batch_id= batch_id,Serial_number_of_goods= serial_number,Shipment_Description=shipment_description)
-        New_shipment = Shipment_data.insert_one(dict(data))
-        return JSONResponse(content={"msg" :"created successfully"},status_code=200)
+        if token :
+            if Shipment_data.find_one({"Shipment_Number": shipment_number}):
+                return JSONResponse(content={"msg": "Shipment number already exists", "status_code": 400})
+            
+            data = Newshipment(Email=token["Email"],Shipment_Number=shipment_number, container_number=container_number, Route_details=route_details, Goods_types=goods_type,Device=device,
+                                Expected_Delivery_date=expected_delivery_date,Po_number=po_number,Delivery_number=delivery_number,Ndc_Number= ndc_number,
+                                Batch_id= batch_id,Serial_number_of_goods= serial_number,Shipment_Description=shipment_description)
+            New_shipment = Shipment_data.insert_one(dict(data))
+            return JSONResponse(content={"msg" :"created successfully"},status_code=200)
     except Exception as e:
         return JSONResponse(content={"detail": str(e)}, status_code=500)

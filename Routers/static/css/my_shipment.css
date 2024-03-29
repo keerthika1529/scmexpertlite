@@ -38,8 +38,8 @@
 
     #table-container {
         width: calc(100% - 258px); 
-        margin-left: 258px; 
-
+        margin-left: 240px; 
+        margin-top: 15px;
     }
 
 table {
@@ -47,7 +47,7 @@ max-width: 100%;
 width: auto; 
 border-collapse: collapse;
 padding: 10px;
-margin-top: 20px;
+margin-top: -1px;
 }
 
     th,td {

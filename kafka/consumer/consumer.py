@@ -10,7 +10,7 @@ load_dotenv()
 mongouri = os.getenv("MONGO_DB_URL")
 conn = MongoClient(mongouri)
 mydatabase = conn[os.getenv("database")]
-device_collection = mydatabase[os.getenv("collection2")]
+device_collection = mydatabase[os.getenv("Device_data")]
  
 conf = {
     'bootstrap.servers': os.getenv("bootstrap_servers"),

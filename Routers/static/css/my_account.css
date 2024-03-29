@@ -28,7 +28,7 @@ body {
 .container {
     width: 400px;
     padding: 50px;
-    border: 29px solid #0f90cfa8;
+    border:21px solid #0f90cf;
     border-radius: 10px;
     background-color:#fff;
     box-shadow:  0 0 10px #2b95c9;
@@ -88,7 +88,7 @@ body {
 }
 
 .name {
-    font-size: 50px; /* You can adjust the font size as needed */
+    font-size: 40px; /* You can adjust the font size as needed */
   }
 
   

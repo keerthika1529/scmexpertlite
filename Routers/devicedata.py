@@ -21,7 +21,7 @@ Device_data=database["Device_data"]
 templates = Jinja2Templates(directory="Templates")
 
 @devicedata.get("/device_data", response_class=HTMLResponse)
-async def dashboard(request: fastapi.Request):
+def dashboard(request: fastapi.Request):
     return templates.TemplateResponse("device_data.html", {"request": request})
 
 # Route to get device data based on Device_ID
